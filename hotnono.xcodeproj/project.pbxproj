@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24922980F6916EFA0BCFAF4C /* Pods_hotnonoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38817FF4B137B16222F2967 /* Pods_hotnonoTests.framework */; };
+		507AB5A3B89AE3D4E0C653AE /* Pods_hotnono.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */; };
 		5C0758FB21142DD8005F9143 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0758FA21142DD8005F9143 /* AppDelegate.swift */; };
 		5C0758FD21142DD8005F9143 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0758FC21142DD8005F9143 /* ViewController.swift */; };
 		5C07590021142DD8005F9143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C0758FE21142DD8005F9143 /* Main.storyboard */; };
@@ -14,6 +16,8 @@
 		5C07590521142DD8005F9143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C07590321142DD8005F9143 /* LaunchScreen.storyboard */; };
 		5C07591021142DD8005F9143 /* hotnonoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07590F21142DD8005F9143 /* hotnonoTests.swift */; };
 		5C07591B21142DD8005F9143 /* hotnonoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07591A21142DD8005F9143 /* hotnonoUITests.swift */; };
+		5C51449121142E0A0033CF23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C51449021142E0A0033CF23 /* GoogleService-Info.plist */; };
+		E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C93444551DBB45D8498A06A /* Pods-hotnono.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.release.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.release.xcconfig"; sourceTree = "<group>"; };
 		5C0758F721142DD7005F9143 /* hotnono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hotnono.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0758FA21142DD8005F9143 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C0758FC21142DD8005F9143 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,15 @@
 		5C07591621142DD8005F9143 /* hotnonoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hotnonoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C07591A21142DD8005F9143 /* hotnonoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hotnonoUITests.swift; sourceTree = "<group>"; };
 		5C07591C21142DD8005F9143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C51449021142E0A0033CF23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.debug.xcconfig"; sourceTree = "<group>"; };
+		945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnono.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54A5480BA48EC306573B347 /* Pods-hotnonoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoUITests/Pods-hotnonoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B278ACFBB9F69B09D943B752 /* Pods-hotnonoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoTests/Pods-hotnonoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B82E1DFB582DE6415C5324FC /* Pods-hotnonoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoTests/Pods-hotnonoTests.release.xcconfig"; sourceTree = "<group>"; };
+		C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnonoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D38817FF4B137B16222F2967 /* Pods_hotnonoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnonoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF7F8FDA0E9B47E5D2A33AF7 /* Pods-hotnonoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoUITests/Pods-hotnonoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507AB5A3B89AE3D4E0C653AE /* Pods_hotnono.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24922980F6916EFA0BCFAF4C /* Pods_hotnonoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +84,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06572C386D4066EBA6826A0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */,
+				4C93444551DBB45D8498A06A /* Pods-hotnono.release.xcconfig */,
+				B278ACFBB9F69B09D943B752 /* Pods-hotnonoTests.debug.xcconfig */,
+				B82E1DFB582DE6415C5324FC /* Pods-hotnonoTests.release.xcconfig */,
+				A54A5480BA48EC306573B347 /* Pods-hotnonoUITests.debug.xcconfig */,
+				DF7F8FDA0E9B47E5D2A33AF7 /* Pods-hotnonoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5C0758EE21142DD7005F9143 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +111,8 @@
 				5C07590E21142DD8005F9143 /* hotnonoTests */,
 				5C07591921142DD8005F9143 /* hotnonoUITests */,
 				5C0758F821142DD7005F9143 /* Products */,
+				06572C386D4066EBA6826A0F /* Pods */,
+				EB0B404189A42EE7E4BD4B36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +135,7 @@
 				5C07590121142DD8005F9143 /* Assets.xcassets */,
 				5C07590321142DD8005F9143 /* LaunchScreen.storyboard */,
 				5C07590621142DD8005F9143 /* Info.plist */,
+				5C51449021142E0A0033CF23 /* GoogleService-Info.plist */,
 			);
 			path = hotnono;
 			sourceTree = "<group>";
@@ -125,6 +158,16 @@
 			path = hotnonoUITests;
 			sourceTree = "<group>";
 		};
+		EB0B404189A42EE7E4BD4B36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */,
+				D38817FF4B137B16222F2967 /* Pods_hotnonoTests.framework */,
+				C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C07591F21142DD8005F9143 /* Build configuration list for PBXNativeTarget "hotnono" */;
 			buildPhases = (
+				4A679DAA356D5487E998E885 /* [CP] Check Pods Manifest.lock */,
 				5C0758F321142DD7005F9143 /* Sources */,
 				5C0758F421142DD7005F9143 /* Frameworks */,
 				5C0758F521142DD7005F9143 /* Resources */,
+				6EE09CE757DFAB109B143E44 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C07592221142DD8005F9143 /* Build configuration list for PBXNativeTarget "hotnonoTests" */;
 			buildPhases = (
+				AA9CD3CBA6C1E5EC1BEF1DDF /* [CP] Check Pods Manifest.lock */,
 				5C07590721142DD8005F9143 /* Sources */,
 				5C07590821142DD8005F9143 /* Frameworks */,
 				5C07590921142DD8005F9143 /* Resources */,
@@ -167,6 +213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C07592521142DD8005F9143 /* Build configuration list for PBXNativeTarget "hotnonoUITests" */;
 			buildPhases = (
+				72F80B1B341B20B80DBF27B7 /* [CP] Check Pods Manifest.lock */,
 				5C07591221142DD8005F9143 /* Sources */,
 				5C07591321142DD8005F9143 /* Frameworks */,
 				5C07591421142DD8005F9143 /* Resources */,
@@ -230,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C07590521142DD8005F9143 /* LaunchScreen.storyboard in Resources */,
+				5C51449121142E0A0033CF23 /* GoogleService-Info.plist in Resources */,
 				5C07590221142DD8005F9143 /* Assets.xcassets in Resources */,
 				5C07590021142DD8005F9143 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +298,89 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4A679DAA356D5487E998E885 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hotnono-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EE09CE757DFAB109B143E44 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hotnono/Pods-hotnono-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hotnono/Pods-hotnono-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72F80B1B341B20B80DBF27B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hotnonoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA9CD3CBA6C1E5EC1BEF1DDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hotnonoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5C0758F321142DD7005F9143 /* Sources */ = {
@@ -363,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -417,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -428,15 +559,13 @@
 		};
 		5C07592021142DD8005F9143 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnono/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnono;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -446,15 +575,13 @@
 		};
 		5C07592121142DD8005F9143 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C93444551DBB45D8498A06A /* Pods-hotnono.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnono/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnono;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -464,17 +591,14 @@
 		};
 		5C07592321142DD8005F9143 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B278ACFBB9F69B09D943B752 /* Pods-hotnonoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -485,17 +609,14 @@
 		};
 		5C07592421142DD8005F9143 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B82E1DFB582DE6415C5324FC /* Pods-hotnonoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -506,16 +627,13 @@
 		};
 		5C07592621142DD8005F9143 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A54A5480BA48EC306573B347 /* Pods-hotnonoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -526,16 +644,13 @@
 		};
 		5C07592721142DD8005F9143 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF7F8FDA0E9B47E5D2A33AF7 /* Pods-hotnonoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
