@@ -33,6 +33,7 @@
 		5CD9A2DF21145D600044FA91 /* CommonActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2DE21145D600044FA91 /* CommonActionBar.swift */; };
 		5CD9A2E121145D7D0044FA91 /* CommonActionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */; };
 		5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5589D211462D300DC196C /* BaseViewController.swift */; };
+		5CF558A02114671B00DC196C /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5589F2114671B00DC196C /* DatabaseViewController.swift */; };
 		E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		5CD9A2DE21145D600044FA91 /* CommonActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonActionBar.swift; sourceTree = "<group>"; };
 		5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonActionBar.xib; sourceTree = "<group>"; };
 		5CF5589D211462D300DC196C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5CF5589F2114671B00DC196C /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.debug.xcconfig"; sourceTree = "<group>"; };
 		945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnono.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54A5480BA48EC306573B347 /* Pods-hotnonoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoUITests/Pods-hotnonoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				5C0758FC21142DD8005F9143 /* MainViewController.swift */,
 				5CD9A2DA21145A650044FA91 /* AnalyticsViewController.swift */,
+				5CF5589F2114671B00DC196C /* DatabaseViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				5CD9A2C9211459850044FA91 /* FBDatabaseHelper.swift in Sources */,
 				5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */,
 				5CD9A2DF21145D600044FA91 /* CommonActionBar.swift in Sources */,
+				5CF558A02114671B00DC196C /* DatabaseViewController.swift in Sources */,
 				5CD9A2D921145A290044FA91 /* FBFunctionsHelper.swift in Sources */,
 				5CD9A2CF211459A70044FA91 /* FBRemoteConfigHelper.swift in Sources */,
 				5CD9A2D1211459D30044FA91 /* FBAuthenticationHelper.swift in Sources */,
