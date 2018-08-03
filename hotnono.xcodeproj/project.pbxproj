@@ -10,13 +10,29 @@
 		24922980F6916EFA0BCFAF4C /* Pods_hotnonoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38817FF4B137B16222F2967 /* Pods_hotnonoTests.framework */; };
 		507AB5A3B89AE3D4E0C653AE /* Pods_hotnono.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */; };
 		5C0758FB21142DD8005F9143 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0758FA21142DD8005F9143 /* AppDelegate.swift */; };
-		5C0758FD21142DD8005F9143 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0758FC21142DD8005F9143 /* ViewController.swift */; };
+		5C0758FD21142DD8005F9143 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0758FC21142DD8005F9143 /* MainViewController.swift */; };
 		5C07590021142DD8005F9143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C0758FE21142DD8005F9143 /* Main.storyboard */; };
 		5C07590221142DD8005F9143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C07590121142DD8005F9143 /* Assets.xcassets */; };
 		5C07590521142DD8005F9143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C07590321142DD8005F9143 /* LaunchScreen.storyboard */; };
 		5C07591021142DD8005F9143 /* hotnonoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07590F21142DD8005F9143 /* hotnonoTests.swift */; };
 		5C07591B21142DD8005F9143 /* hotnonoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07591A21142DD8005F9143 /* hotnonoUITests.swift */; };
 		5C51449121142E0A0033CF23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C51449021142E0A0033CF23 /* GoogleService-Info.plist */; };
+		5CD9A2C32114593F0044FA91 /* FBAnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C22114593F0044FA91 /* FBAnalyticsHelper.swift */; };
+		5CD9A2C52114595A0044FA91 /* FBAdModHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C42114595A0044FA91 /* FBAdModHelper.swift */; };
+		5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C6211459790044FA91 /* FBMessagingHelper.swift */; };
+		5CD9A2C9211459850044FA91 /* FBDatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C8211459850044FA91 /* FBDatabaseHelper.swift */; };
+		5CD9A2CB211459900044FA91 /* FBDynamicLinkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2CA211459900044FA91 /* FBDynamicLinkHelper.swift */; };
+		5CD9A2CD2114599C0044FA91 /* FBCrashlyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2CC2114599C0044FA91 /* FBCrashlyticsHelper.swift */; };
+		5CD9A2CF211459A70044FA91 /* FBRemoteConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2CE211459A70044FA91 /* FBRemoteConfigHelper.swift */; };
+		5CD9A2D1211459D30044FA91 /* FBAuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2D0211459D30044FA91 /* FBAuthenticationHelper.swift */; };
+		5CD9A2D3211459F20044FA91 /* FBStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2D2211459F20044FA91 /* FBStorageHelper.swift */; };
+		5CD9A2D5211459FE0044FA91 /* FBPerformanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2D4211459FE0044FA91 /* FBPerformanceHelper.swift */; };
+		5CD9A2D721145A0C0044FA91 /* FBFirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2D621145A0C0044FA91 /* FBFirestoreHelper.swift */; };
+		5CD9A2D921145A290044FA91 /* FBFunctionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2D821145A290044FA91 /* FBFunctionsHelper.swift */; };
+		5CD9A2DB21145A650044FA91 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2DA21145A650044FA91 /* AnalyticsViewController.swift */; };
+		5CD9A2DF21145D600044FA91 /* CommonActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2DE21145D600044FA91 /* CommonActionBar.swift */; };
+		5CD9A2E121145D7D0044FA91 /* CommonActionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */; };
+		5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5589D211462D300DC196C /* BaseViewController.swift */; };
 		E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +57,7 @@
 		4C93444551DBB45D8498A06A /* Pods-hotnono.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.release.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.release.xcconfig"; sourceTree = "<group>"; };
 		5C0758F721142DD7005F9143 /* hotnono.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hotnono.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0758FA21142DD8005F9143 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5C0758FC21142DD8005F9143 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5C0758FC21142DD8005F9143 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5C0758FF21142DD8005F9143 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5C07590121142DD8005F9143 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C07590421142DD8005F9143 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +69,22 @@
 		5C07591A21142DD8005F9143 /* hotnonoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hotnonoUITests.swift; sourceTree = "<group>"; };
 		5C07591C21142DD8005F9143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C51449021142E0A0033CF23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5CD9A2C22114593F0044FA91 /* FBAnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalyticsHelper.swift; sourceTree = "<group>"; };
+		5CD9A2C42114595A0044FA91 /* FBAdModHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAdModHelper.swift; sourceTree = "<group>"; };
+		5CD9A2C6211459790044FA91 /* FBMessagingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessagingHelper.swift; sourceTree = "<group>"; };
+		5CD9A2C8211459850044FA91 /* FBDatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDatabaseHelper.swift; sourceTree = "<group>"; };
+		5CD9A2CA211459900044FA91 /* FBDynamicLinkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDynamicLinkHelper.swift; sourceTree = "<group>"; };
+		5CD9A2CC2114599C0044FA91 /* FBCrashlyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBCrashlyticsHelper.swift; sourceTree = "<group>"; };
+		5CD9A2CE211459A70044FA91 /* FBRemoteConfigHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRemoteConfigHelper.swift; sourceTree = "<group>"; };
+		5CD9A2D0211459D30044FA91 /* FBAuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthenticationHelper.swift; sourceTree = "<group>"; };
+		5CD9A2D2211459F20044FA91 /* FBStorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBStorageHelper.swift; sourceTree = "<group>"; };
+		5CD9A2D4211459FE0044FA91 /* FBPerformanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPerformanceHelper.swift; sourceTree = "<group>"; };
+		5CD9A2D621145A0C0044FA91 /* FBFirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFirestoreHelper.swift; sourceTree = "<group>"; };
+		5CD9A2D821145A290044FA91 /* FBFunctionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFunctionsHelper.swift; sourceTree = "<group>"; };
+		5CD9A2DA21145A650044FA91 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		5CD9A2DE21145D600044FA91 /* CommonActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonActionBar.swift; sourceTree = "<group>"; };
+		5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonActionBar.xib; sourceTree = "<group>"; };
+		5CF5589D211462D300DC196C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.debug.xcconfig"; sourceTree = "<group>"; };
 		945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnono.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54A5480BA48EC306573B347 /* Pods-hotnonoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoUITests/Pods-hotnonoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,8 +161,10 @@
 		5C0758F921142DD7005F9143 /* hotnono */ = {
 			isa = PBXGroup;
 			children = (
+				5CD9A2DD21145D500044FA91 /* View */,
+				5CD9A2BE211455970044FA91 /* Controller */,
+				5CD9A2BB211453150044FA91 /* Firebase */,
 				5C0758FA21142DD8005F9143 /* AppDelegate.swift */,
-				5C0758FC21142DD8005F9143 /* ViewController.swift */,
 				5C0758FE21142DD8005F9143 /* Main.storyboard */,
 				5C07590121142DD8005F9143 /* Assets.xcassets */,
 				5C07590321142DD8005F9143 /* LaunchScreen.storyboard */,
@@ -156,6 +190,52 @@
 				5C07591C21142DD8005F9143 /* Info.plist */,
 			);
 			path = hotnonoUITests;
+			sourceTree = "<group>";
+		};
+		5CD9A2BB211453150044FA91 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				5CD9A2C22114593F0044FA91 /* FBAnalyticsHelper.swift */,
+				5CD9A2C42114595A0044FA91 /* FBAdModHelper.swift */,
+				5CD9A2C6211459790044FA91 /* FBMessagingHelper.swift */,
+				5CD9A2C8211459850044FA91 /* FBDatabaseHelper.swift */,
+				5CD9A2CA211459900044FA91 /* FBDynamicLinkHelper.swift */,
+				5CD9A2CC2114599C0044FA91 /* FBCrashlyticsHelper.swift */,
+				5CD9A2CE211459A70044FA91 /* FBRemoteConfigHelper.swift */,
+				5CD9A2D0211459D30044FA91 /* FBAuthenticationHelper.swift */,
+				5CD9A2D2211459F20044FA91 /* FBStorageHelper.swift */,
+				5CD9A2D4211459FE0044FA91 /* FBPerformanceHelper.swift */,
+				5CD9A2D621145A0C0044FA91 /* FBFirestoreHelper.swift */,
+				5CD9A2D821145A290044FA91 /* FBFunctionsHelper.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		5CD9A2BE211455970044FA91 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5CD9A2BF211455B90044FA91 /* Main */,
+				5CF5589D211462D300DC196C /* BaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5CD9A2BF211455B90044FA91 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5C0758FC21142DD8005F9143 /* MainViewController.swift */,
+				5CD9A2DA21145A650044FA91 /* AnalyticsViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5CD9A2DD21145D500044FA91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5CD9A2DE21145D600044FA91 /* CommonActionBar.swift */,
+				5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EB0B404189A42EE7E4BD4B36 /* Frameworks */ = {
@@ -280,6 +360,7 @@
 				5C51449121142E0A0033CF23 /* GoogleService-Info.plist in Resources */,
 				5C07590221142DD8005F9143 /* Assets.xcassets in Resources */,
 				5C07590021142DD8005F9143 /* Main.storyboard in Resources */,
+				5CD9A2E121145D7D0044FA91 /* CommonActionBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,17 +406,27 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-hotnono/Pods-hotnono-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -387,8 +478,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C0758FD21142DD8005F9143 /* ViewController.swift in Sources */,
+				5C0758FD21142DD8005F9143 /* MainViewController.swift in Sources */,
+				5CD9A2CB211459900044FA91 /* FBDynamicLinkHelper.swift in Sources */,
+				5CD9A2DB21145A650044FA91 /* AnalyticsViewController.swift in Sources */,
+				5CD9A2D5211459FE0044FA91 /* FBPerformanceHelper.swift in Sources */,
+				5CD9A2D3211459F20044FA91 /* FBStorageHelper.swift in Sources */,
 				5C0758FB21142DD8005F9143 /* AppDelegate.swift in Sources */,
+				5CD9A2C32114593F0044FA91 /* FBAnalyticsHelper.swift in Sources */,
+				5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */,
+				5CD9A2C52114595A0044FA91 /* FBAdModHelper.swift in Sources */,
+				5CD9A2CD2114599C0044FA91 /* FBCrashlyticsHelper.swift in Sources */,
+				5CD9A2D721145A0C0044FA91 /* FBFirestoreHelper.swift in Sources */,
+				5CD9A2C9211459850044FA91 /* FBDatabaseHelper.swift in Sources */,
+				5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */,
+				5CD9A2DF21145D600044FA91 /* CommonActionBar.swift in Sources */,
+				5CD9A2D921145A290044FA91 /* FBFunctionsHelper.swift in Sources */,
+				5CD9A2CF211459A70044FA91 /* FBRemoteConfigHelper.swift in Sources */,
+				5CD9A2D1211459D30044FA91 /* FBAuthenticationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +671,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnono/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnono;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -581,7 +690,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnono/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnono;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -598,7 +710,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -616,7 +732,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -633,7 +753,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -650,7 +774,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K8C4375VVZ;
 				INFOPLIST_FILE = hotnonoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nbt.hotnonoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

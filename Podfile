@@ -13,13 +13,18 @@ target 'hotnono' do
     # ~> 0.1.2 : 0.1.2 ~ 0.2 버전사이에 있는 버전중 가장 최신의 버전을 사용. >= 0.1.2 와 < 0.2.0가 결합된 것
 
     # 여기에 설치할 라이브러리를 나열합니다.
-    pod 'Firebase/Core', '5.4.0'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Database'
-    pod 'Firebase/Messaging'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/DynamicLinks'
-    pod 'Firebase/Performance'
+    pod 'Firebase/Core', '5.4.0'    #필수 조건 라이브러리 및 애널리틱스
+    pod 'Firebase/AdMob'    #AdMob
+    pod 'Firebase/Messaging'    #클라우드 메시징
+    pod 'Firebase/Database'    #실시간 데이터베이스
+    pod 'Firebase/DynamicLinks'    #동적 링크
+    pod 'Firebase/Crash'    #오류 보고
+    pod 'Firebase/RemoteConfig'    #원격 구성
+    pod 'Firebase/Auth'    #인증
+    pod 'Firebase/Storage'    #저장소
+    pod 'Firebase/Performance'    #성능 모니터링
+    pod 'Firebase/Firestore'    #Cloud Firestore
+    pod 'Firebase/Functions'    #Firebase용 Cloud 함수 클라이언트 SDK
 
   target 'hotnonoTests' do
     inherit! :search_paths

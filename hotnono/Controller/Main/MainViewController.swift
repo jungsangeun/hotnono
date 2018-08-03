@@ -8,9 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var containerView: UIView!
+class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +16,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let webView = UIWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 50))
-        webView.backgroundColor = UIColor.clear
-        containerView.addSubview(webView)
         
-        webView.loadRequest(URLRequest(url: URL(string: "https://maps.darksky.net/@temperature,40.219,-231.200,4")!))
     }
 
     override func didReceiveMemoryWarning() {
