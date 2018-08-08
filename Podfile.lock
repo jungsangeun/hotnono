@@ -1,20 +1,10 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
   - BoringSSL (10.0.6):
     - BoringSSL/Implementation (= 10.0.6)
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - FBSDKCoreKit (4.35.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.35.0):
-    - FBSDKCoreKit
   - Firebase/AdMob (5.4.0):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.31.0)
@@ -122,35 +112,6 @@ PODS:
   - FirebaseSwizzlingUtilities/ISASwizzling (2.0.0)
   - FirebaseSwizzlingUtilities/MethodSwizzling (2.0.0):
     - FirebaseCore (~> 5.0)
-  - FirebaseUI (5.1.3):
-    - FirebaseUI/Auth (= 5.1.3)
-    - FirebaseUI/Database (= 5.1.3)
-    - FirebaseUI/Facebook (= 5.1.3)
-    - FirebaseUI/Firestore (= 5.1.3)
-    - FirebaseUI/Google (= 5.1.3)
-    - FirebaseUI/Phone (= 5.1.3)
-    - FirebaseUI/Storage (= 5.1.3)
-    - FirebaseUI/Twitter (= 5.1.3)
-  - FirebaseUI/Auth (5.1.3):
-    - Firebase/Auth (~> 5.0)
-  - FirebaseUI/Database (5.1.3):
-    - Firebase/Database (~> 5.0)
-  - FirebaseUI/Facebook (5.1.3):
-    - FBSDKLoginKit (~> 4.0)
-    - FirebaseUI/Auth
-  - FirebaseUI/Firestore (5.1.3):
-    - Firebase/Firestore
-  - FirebaseUI/Google (5.1.3):
-    - FirebaseUI/Auth
-    - GoogleSignIn (~> 4.0)
-  - FirebaseUI/Phone (5.1.3):
-    - FirebaseUI/Auth
-  - FirebaseUI/Storage (5.1.3):
-    - Firebase/Storage (~> 5.0)
-    - SDWebImage (~> 4.0)
-  - FirebaseUI/Twitter (5.1.3):
-    - FirebaseUI/Auth
-    - TwitterKit (~> 3.0)
   - Google-Mobile-Ads-SDK (7.31.0)
   - GoogleSignIn (4.1.2):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
@@ -203,13 +164,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Protobuf (3.6.0)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - TwitterCore (3.2.0)
-  - TwitterKit (3.4.0):
-    - TwitterCore (>= 3.1.0)
+  - Protobuf (3.6.1)
 
 DEPENDENCIES:
   - Firebase/AdMob
@@ -224,14 +179,11 @@ DEPENDENCIES:
   - Firebase/Performance
   - Firebase/RemoteConfig
   - Firebase/Storage
-  - FirebaseUI
+  - GoogleSignIn
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Bolts
     - BoringSSL
-    - FBSDKCoreKit
-    - FBSDKLoginKit
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -248,7 +200,6 @@ SPEC REPOS:
     - FirebaseRemoteConfig
     - FirebaseStorage
     - FirebaseSwizzlingUtilities
-    - FirebaseUI
     - Google-Mobile-Ads-SDK
     - GoogleSignIn
     - GoogleToolboxForMac
@@ -261,15 +212,9 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
-    - SDWebImage
-    - TwitterCore
-    - TwitterKit
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  FBSDKCoreKit: 1a5b2e3ceb5ca827a53c54aa5f4a3480efff80d2
-  FBSDKLoginKit: 00a3d65d1226852f9d76dcddff01981e5e6d9c38
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
@@ -286,7 +231,6 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 3c57e4644bd6976b671ae0b725cd709f198bd1f5
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   FirebaseSwizzlingUtilities: 6c22677c50d0b6f5f0dc637c1233f13694a3003f
-  FirebaseUI: 6d3f86249a4de8288424e154c9ff1a976aae3910
   Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
@@ -298,11 +242,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: b7a4e16365f3da5e3ad07a8c8fe80aab31919f7f
+PODFILE CHECKSUM: ad2563775353c80fa0bdaaf28a02f470a639dfc9
 
 COCOAPODS: 1.5.3

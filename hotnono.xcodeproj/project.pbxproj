@@ -16,6 +16,7 @@
 		5C07590521142DD8005F9143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C07590321142DD8005F9143 /* LaunchScreen.storyboard */; };
 		5C07591021142DD8005F9143 /* hotnonoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07590F21142DD8005F9143 /* hotnonoTests.swift */; };
 		5C07591B21142DD8005F9143 /* hotnonoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07591A21142DD8005F9143 /* hotnonoUITests.swift */; };
+		5CA15F8A211B1B8E00911555 /* ReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA15F89211B1B8E00911555 /* ReadyViewController.swift */; };
 		5CD9A2C32114593F0044FA91 /* FBAnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C22114593F0044FA91 /* FBAnalyticsHelper.swift */; };
 		5CD9A2C52114595A0044FA91 /* FBAdModHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C42114595A0044FA91 /* FBAdModHelper.swift */; };
 		5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9A2C6211459790044FA91 /* FBMessagingHelper.swift */; };
@@ -67,6 +68,7 @@
 		5C07591621142DD8005F9143 /* hotnonoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hotnonoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C07591A21142DD8005F9143 /* hotnonoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hotnonoUITests.swift; sourceTree = "<group>"; };
 		5C07591C21142DD8005F9143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CA15F89211B1B8E00911555 /* ReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyViewController.swift; sourceTree = "<group>"; };
 		5CD9A2C22114593F0044FA91 /* FBAnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalyticsHelper.swift; sourceTree = "<group>"; };
 		5CD9A2C42114595A0044FA91 /* FBAdModHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAdModHelper.swift; sourceTree = "<group>"; };
 		5CD9A2C6211459790044FA91 /* FBMessagingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessagingHelper.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				5C0758FC21142DD8005F9143 /* MainViewController.swift */,
+				5CA15F89211B1B8E00911555 /* ReadyViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -404,17 +407,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-hotnono/Pods-hotnono-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -424,17 +421,11 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -490,23 +481,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-hotnono/Pods-hotnono-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -532,6 +511,7 @@
 				5CD9A2D721145A0C0044FA91 /* FBFirestoreHelper.swift in Sources */,
 				5CD9A2C9211459850044FA91 /* FBDatabaseHelper.swift in Sources */,
 				5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */,
+				5CA15F8A211B1B8E00911555 /* ReadyViewController.swift in Sources */,
 				5CD9A2DF21145D600044FA91 /* CommonActionBar.swift in Sources */,
 				5CD9A2D921145A290044FA91 /* FBFunctionsHelper.swift in Sources */,
 				5CD9A2CF211459A70044FA91 /* FBRemoteConfigHelper.swift in Sources */,
@@ -710,7 +690,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K8C4375VVZ;
+				DEVELOPMENT_TEAM = 7E6Z893Q6L;
 				INFOPLIST_FILE = hotnono/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -729,7 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K8C4375VVZ;
+				DEVELOPMENT_TEAM = 7E6Z893Q6L;
 				INFOPLIST_FILE = hotnono/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
