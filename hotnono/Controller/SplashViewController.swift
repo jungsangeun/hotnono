@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Firebase
 
 class SplashViewController: BaseViewController {
-
+    
     override func viewDidLoad() {
-        
+        Timer.scheduledTimer(withTimeInterval: 0, repeats: false, block: { (Timer) in
+            self.performSegue(withIdentifier: "segueSplashToMain", sender: nil)
+        })
     }
 }

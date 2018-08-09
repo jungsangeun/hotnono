@@ -27,6 +27,10 @@ target 'hotnono' do
     pod 'Firebase/Functions'    #Firebase용 Cloud 함수 클라이언트 SDK
     pod 'GoogleSignIn'
     
+    pod 'MaterialComponents/Buttons+ColorThemer'
+    pod 'MaterialComponents/Buttons'
+    pod 'MaterialComponents/Buttons+ButtonThemer'
+    
   target 'hotnonoTests' do
     inherit! :search_paths
     # Pods for testing

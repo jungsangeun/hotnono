@@ -7,23 +7,86 @@
 //
 
 import Foundation
+import Firebase
 
 class FBAuthenticationHelper {
     
+    static let sharedInstance = FBAuthenticationHelper()
     
-    func isSignIn() {
+    var handleAuth:AuthStateDidChangeListenerHandle
+    
+    init() {
+        print("Created FBAuthenticationHelper");
         
+        handleAuth = Auth.auth().addStateDidChangeListener {
+            (auth, user) in
+            print("addStateDidChangeListener %@", user ?? "user is nil")
+        }
     }
     
-    func signUp(email: String, password: String) {
-        
+    func destroy() {
+        Auth.auth().removeStateDidChangeListener(handleAuth)
     }
     
-    func signIn(email: String, password: String) {
-        
+    func getCurrentUser() -> User? {
+        guard let user = Auth.auth().currentUser else {
+            return nil
+        }
+        return user
     }
     
-    func signInGoogle() {
-        
+    func isSignIn() -> Bool {
+        guard getCurrentUser() != nil else {
+            return false
+        }
+        return true
+    }
+    
+    func signInEmail(email: String, password: String, success: @escaping (User) -> (), fail: @escaping (Error) -> ()) {
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                fail(error)
+            } else {
+                if let ret = user?.user {
+                    success(ret)
+                } else {
+                    fail(FBAuthError.nilUser(reason: "User is nil"))
+                }
+            }
+        }
+    }
+    
+    func signUpEmail(email: String, password: String, success: @escaping (User?) -> (), fail: @escaping (Error) -> ()) {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                if let errCode = AuthErrorCode(rawValue: error._code) {
+                    switch errCode {
+                    case .emailAlreadyInUse :
+                        self.signInEmail(email: email, password: password, success: success, fail: fail)
+                    default:
+                        fail(error)
+                    }
+                }
+            } else {
+                if let ret = user?.user {
+                    success(ret)
+                } else {
+                    fail(FBAuthError.nilUser(reason: "User is nil"))
+                }
+            }
+        }
+    }
+    
+    func signUpGoogle() {
+        // TODO
+    }
+    
+    func signOut() {
+        // TODO
     }
 }
+
+enum FBAuthError: Error {
+    case nilUser(reason: String)
+}
+

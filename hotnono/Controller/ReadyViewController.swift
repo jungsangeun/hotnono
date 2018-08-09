@@ -7,21 +7,32 @@
 //
 
 import UIKit
-import Firebase
+import MaterialComponents.MaterialButtons
 
 class ReadyViewController: BaseViewController {
     
-    var user: User?
+    @IBOutlet weak var createButton: MDCButton!
+    @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var joinButton: MDCButton!
+    @IBOutlet weak var backToSignInButton: MDCButton!
+    
+    @IBAction func clickCreate(_ sender: Any) {
+        self.showAlertPopup(message: "준비중:$")
+    }
+    
+    @IBAction func clickJoin(_ sender: Any) {
+        self.showAlertPopup(message: "준비중:$")
+    }
+    
+    @IBAction func clickQuit(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-    
+        MaterialDesignUtil.applyButtonTheme(createButton)
+        MaterialDesignUtil.applyButtonTheme(joinButton)
+        MaterialDesignUtil.applyButtonTheme(backToSignInButton)
     }
 }

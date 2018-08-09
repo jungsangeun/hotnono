@@ -27,11 +27,11 @@
 NO
 NO</string>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="qE9-MT-UXw" firstAttribute="centerY" secondItem="p3m-pR-bpK" secondAttribute="centerY" id="a4V-UF-Rzc"/>
                                     <constraint firstItem="qE9-MT-UXw" firstAttribute="centerX" secondItem="p3m-pR-bpK" secondAttribute="centerX" id="mMS-m6-263"/>
