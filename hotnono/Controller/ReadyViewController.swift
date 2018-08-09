@@ -17,11 +17,11 @@ class ReadyViewController: BaseViewController {
     @IBOutlet weak var backToSignInButton: MDCButton!
     
     @IBAction func clickCreate(_ sender: Any) {
-        self.showAlertPopup(message: "준비중:$")
+        performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
     }
     
     @IBAction func clickJoin(_ sender: Any) {
-        self.showAlertPopup(message: "준비중:$")
+        performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
     }
     
     @IBAction func clickQuit(_ sender: Any) {
@@ -34,5 +34,12 @@ class ReadyViewController: BaseViewController {
         MaterialDesignUtil.applyButtonTheme(createButton)
         MaterialDesignUtil.applyButtonTheme(joinButton)
         MaterialDesignUtil.applyButtonTheme(backToSignInButton)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueReadyToPlay" {
+            let vc = segue.destination as! PlayViewController
+            vc.code = codeTextField.text
+        }
     }
 }

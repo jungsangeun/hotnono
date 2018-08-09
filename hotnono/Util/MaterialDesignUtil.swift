@@ -18,4 +18,11 @@ class MaterialDesignUtil {
         colorScheme.primaryColor = UIColor.black
         MDCTextButtonColorThemer.applySemanticColorScheme(colorScheme, to: button)
     }
+    
+    static func applyContainerButtonTheme(_ button: MDCButton) {
+        MDCContainedButtonThemer.applyScheme(MDCButtonScheme(), to: button)
+        let colorScheme = MDCSemanticColorScheme()
+        colorScheme.primaryColor = UIColor.white
+        MDCTextButtonColorThemer.applySemanticColorScheme(colorScheme, to: button)
+    }
 }

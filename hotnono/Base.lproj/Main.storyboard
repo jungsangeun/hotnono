@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-688" y="27"/>
+            <point key="canvasLocation" x="-324" y="27"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="J97-fY-49u">
@@ -220,11 +220,12 @@ NO</string>
                         <outlet property="codeTextField" destination="A1f-Zh-A8B" id="gBC-R2-4V5"/>
                         <outlet property="createButton" destination="iJ3-VB-B3W" id="GfP-m3-5vO"/>
                         <outlet property="joinButton" destination="r4N-4F-bIG" id="MYe-YL-fav"/>
+                        <segue destination="Zcc-1f-BnV" kind="show" identifier="segueReadyToPlay" id="ilm-NS-Vdt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHC-c2-1fu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191" y="28"/>
+            <point key="canvasLocation" x="559" y="27"/>
         </scene>
         <!--Play View Controller-->
         <scene sceneID="e7D-Qa-DAD">
@@ -233,13 +234,109 @@ NO</string>
                     <view key="view" contentMode="scaleToFill" id="m6e-z1-Zwd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJN-HY-Mry" customClass="MDCButton">
+                                <rect key="frame" x="20" y="40" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1KQ-Lj-DTA"/>
+                                </constraints>
+                                <state key="normal" title="이전 화면으로 돌아가기"/>
+                                <connections>
+                                    <action selector="clickQuit:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="GHO-3j-6TR"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rve-M1-aR3">
+                                <rect key="frame" x="57.5" y="139" width="260" height="260"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="ZDK-tL-nbP"/>
+                                    <constraint firstAttribute="height" constant="260" id="dG9-AN-HIB"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrY-u8-N6B" customClass="MDCButton">
+                                <rect key="frame" x="67" y="527" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0BF-2a-ovz"/>
+                                    <constraint firstAttribute="width" constant="60" id="IR5-xg-NRy"/>
+                                </constraints>
+                                <state key="normal" title="◀︎"/>
+                                <connections>
+                                    <action selector="clickLeft:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="A6t-kN-SdV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GI-gm-8nR" customClass="MDCButton">
+                                <rect key="frame" x="157" y="587" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="NTF-pE-FAa"/>
+                                    <constraint firstAttribute="width" constant="60" id="Yfs-64-0Fr"/>
+                                </constraints>
+                                <state key="normal" title="▼"/>
+                                <connections>
+                                    <action selector="clickBottom:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="RmG-oC-7Ra"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Srd-Oe-sv9" customClass="MDCButton">
+                                <rect key="frame" x="247" y="527" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="GRN-Of-5yt"/>
+                                    <constraint firstAttribute="width" constant="60" id="vM6-sF-tSn"/>
+                                </constraints>
+                                <state key="normal" title="▶︎"/>
+                                <connections>
+                                    <action selector="clickRight:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="cJH-1Q-GZx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-9c-PVM">
+                                <rect key="frame" x="20" y="78" width="335" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qk0-dh-2Qc" customClass="MDCButton">
+                                <rect key="frame" x="157" y="467" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="5Va-xc-o3B"/>
+                                    <constraint firstAttribute="height" constant="60" id="rgZ-rj-KRB"/>
+                                </constraints>
+                                <state key="normal" title="▲"/>
+                                <connections>
+                                    <action selector="clickTop:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="HdE-bh-96F"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g9a-9c-PVM" firstAttribute="top" secondItem="zJN-HY-Mry" secondAttribute="bottom" constant="8" id="49L-qi-B0d"/>
+                            <constraint firstItem="QrY-u8-N6B" firstAttribute="top" secondItem="qk0-dh-2Qc" secondAttribute="bottom" id="9A2-cb-ILk"/>
+                            <constraint firstItem="qk0-dh-2Qc" firstAttribute="top" secondItem="Rve-M1-aR3" secondAttribute="bottom" constant="68" id="B2K-z4-2fx"/>
+                            <constraint firstItem="0GI-gm-8nR" firstAttribute="leading" secondItem="QrY-u8-N6B" secondAttribute="trailing" constant="30" id="BH3-XF-Zlx"/>
+                            <constraint firstItem="zJN-HY-Mry" firstAttribute="leading" secondItem="xT5-7r-7Zo" secondAttribute="leading" constant="20" id="CNo-Hu-Ork"/>
+                            <constraint firstItem="0GI-gm-8nR" firstAttribute="top" secondItem="Srd-Oe-sv9" secondAttribute="bottom" id="LOI-TA-UVM"/>
+                            <constraint firstItem="g9a-9c-PVM" firstAttribute="leading" secondItem="xT5-7r-7Zo" secondAttribute="leading" constant="20" id="NOn-Oc-68x"/>
+                            <constraint firstItem="0GI-gm-8nR" firstAttribute="top" secondItem="QrY-u8-N6B" secondAttribute="bottom" id="X6v-EI-jRe"/>
+                            <constraint firstItem="Rve-M1-aR3" firstAttribute="centerX" secondItem="m6e-z1-Zwd" secondAttribute="centerX" id="XXe-vP-N4n"/>
+                            <constraint firstItem="qk0-dh-2Qc" firstAttribute="centerX" secondItem="0GI-gm-8nR" secondAttribute="centerX" id="XaX-nA-uru"/>
+                            <constraint firstItem="xT5-7r-7Zo" firstAttribute="bottom" secondItem="0GI-gm-8nR" secondAttribute="bottom" constant="20" id="YQK-P2-Z3L"/>
+                            <constraint firstItem="Srd-Oe-sv9" firstAttribute="leading" secondItem="0GI-gm-8nR" secondAttribute="trailing" constant="30" id="dfq-6X-9Pk"/>
+                            <constraint firstItem="xT5-7r-7Zo" firstAttribute="trailing" secondItem="g9a-9c-PVM" secondAttribute="trailing" constant="20" id="eGb-we-XdI"/>
+                            <constraint firstItem="xT5-7r-7Zo" firstAttribute="trailing" secondItem="zJN-HY-Mry" secondAttribute="trailing" constant="20" id="gMn-cs-ebW"/>
+                            <constraint firstItem="0GI-gm-8nR" firstAttribute="centerX" secondItem="m6e-z1-Zwd" secondAttribute="centerX" id="tyu-zm-ZFY"/>
+                            <constraint firstItem="zJN-HY-Mry" firstAttribute="top" secondItem="xT5-7r-7Zo" secondAttribute="top" constant="20" id="wSx-Xy-WUq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xT5-7r-7Zo"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomButton" destination="0GI-gm-8nR" id="wJu-ol-0JO"/>
+                        <outlet property="codeLabel" destination="g9a-9c-PVM" id="XYr-xc-kHX"/>
+                        <outlet property="leftButton" destination="QrY-u8-N6B" id="vfj-aP-drh"/>
+                        <outlet property="quitButton" destination="zJN-HY-Mry" id="hh6-nt-QgJ"/>
+                        <outlet property="rightButton" destination="Srd-Oe-sv9" id="pD8-Dz-H3N"/>
+                        <outlet property="topButton" destination="qk0-dh-2Qc" id="mPC-sf-Pyh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mse-ZA-gbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="270" y="28"/>
+            <point key="canvasLocation" x="1526" y="27"/>
         </scene>
     </scenes>
 </document>
