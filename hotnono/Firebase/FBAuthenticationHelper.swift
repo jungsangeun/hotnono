@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+class FBAuthenticationHelper {
+    
+    
+    func isSignIn() {
+        
+    }
+    
+    func signUp(email: String, password: String) {
+        
+    }
+    
+    func signIn(email: String, password: String) {
+        
+    }
+    
+    func signInGoogle() {
+        
+    }
+}

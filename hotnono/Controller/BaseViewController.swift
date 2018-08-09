@@ -15,19 +15,15 @@ class BaseViewController: UIViewController {
     }
     
     func showAlertPopup(message: String) {
-        let alertController = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+       let popup = UINib(nibName: "PopupView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! PopupView
         
-        // Create the actions
-        let okAction = UIAlertAction(title: "확인", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            self.dismiss(animated: true, completion: nil)
-        }
+        popup.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        popup.frame = self.view.frame
         
-        // Add the actions
-        alertController.addAction(okAction)
+        popup.baseView.backgroundColor = UIColor.white
+        popup.baseView.layer.cornerRadius = 9.0
         
-        // Present the controller
-        self.present(alertController, animated: true, completion: nil)
-
+        popup.messageLabel.text = message
+        self.view.addSubview(popup)
     }
 }

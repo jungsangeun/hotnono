@@ -105,6 +105,10 @@ class MainViewController: BaseViewController {
     }
     
     private func moveNext(user: User) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextView = storyboard.instantiateViewController(withIdentifier: "ReadyViewController") as! ReadyViewController
+        nextView.user = user
+        self.present(nextView, animated: true, completion: nil)
     }
 }
 
