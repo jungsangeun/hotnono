@@ -28,6 +28,11 @@ release/
 # CocoaPods
 Pods
 
+# Functions
+functions
+firebase.json
+.firebaserc
+
 #
 .idea
 *.swp

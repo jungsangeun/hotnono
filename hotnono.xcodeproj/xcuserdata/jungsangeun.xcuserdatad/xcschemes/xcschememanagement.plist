@@ -7,7 +7,25 @@
 		<key>hotnono.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>21</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5C0758F621142DD7005F9143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C07590A21142DD8005F9143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C07591521142DD8005F9143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

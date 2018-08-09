@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommonActionBar" customModule="hotnono" customModuleProvider="target">
+            <connections>
+                <outlet property="rootView" destination="86Q-FR-tWA" id="2km-ub-Fq1"/>
+                <outlet property="titleLabel" destination="P2Q-d7-kY9" id="Bmg-hE-b8n"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86Q-FR-tWA">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2Q-d7-kY9">
+                            <rect key="frame" x="165" y="71" width="44.5" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1T-bR-uXD">
+                            <rect key="frame" x="335" y="65" width="32" height="32"/>
+                            <state key="normal" backgroundImage="btnTitleCloseN"/>
+                            <connections>
+                                <action selector="close:" destination="-1" eventType="touchUpInside" id="QZe-XT-kCp"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="g1T-bR-uXD" secondAttribute="trailing" constant="8" id="D9E-RO-o8k"/>
+                        <constraint firstItem="P2Q-d7-kY9" firstAttribute="centerX" secondItem="86Q-FR-tWA" secondAttribute="centerX" id="PIc-Nw-yCC"/>
+                        <constraint firstItem="g1T-bR-uXD" firstAttribute="centerY" secondItem="86Q-FR-tWA" secondAttribute="centerY" id="dHU-58-Tbt"/>
+                        <constraint firstItem="P2Q-d7-kY9" firstAttribute="centerY" secondItem="86Q-FR-tWA" secondAttribute="centerY" id="dl4-vF-Zbp"/>
+                        <constraint firstItem="P2Q-d7-kY9" firstAttribute="centerX" secondItem="86Q-FR-tWA" secondAttribute="centerX" id="ffW-fD-9CJ"/>
+                        <constraint firstItem="P2Q-d7-kY9" firstAttribute="centerY" secondItem="86Q-FR-tWA" secondAttribute="centerY" id="iAe-dC-JVX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="86Q-FR-tWA" secondAttribute="bottom" id="N3C-6h-ei6"/>
+                <constraint firstItem="86Q-FR-tWA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="aEz-jt-KEh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="86Q-FR-tWA" secondAttribute="trailing" id="xuD-vJ-GZ0"/>
+                <constraint firstItem="86Q-FR-tWA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="z3C-eA-dV6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="-199"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btnTitleCloseN" width="32" height="32"/>
+    </resources>
+</document>
