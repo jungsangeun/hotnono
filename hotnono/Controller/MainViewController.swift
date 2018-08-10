@@ -46,6 +46,13 @@ class MainViewController: BaseViewController {
         
         MaterialDesignUtil.applyButtonTheme(emailButton)
         MaterialDesignUtil.applyButtonTheme(googleButton)
+        
+        let tapper = UITapGestureRecognizer(target: self, action:#selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapper)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
