@@ -3,7 +3,7 @@
 
 target 'hotnono' do
   
-    use_frameworks! # 스위프트를 사용하지 않고 동적 라이브러리를 이용하지 않는다면 아래 구문을 주석처리 합니다
+    use_frameworks! # 스위프트를 사용하지 않고 동적 라이브러리를 이용하지 않는다면 주석처리 합니다
 
     # = 0.1 : 0.1 버전을 사용
     # > 0.1 : 0.1 버전 이후에 나온 최신버전을 사용
@@ -30,6 +30,9 @@ target 'hotnono' do
     pod 'MaterialComponents/Buttons+ColorThemer'
     pod 'MaterialComponents/Buttons'
     pod 'MaterialComponents/Buttons+ButtonThemer'
+    
+    pod 'RxSwift',    '~> 4.0'
+    pod 'RxCocoa',    '~> 4.0'
     
   target 'hotnonoTests' do
     inherit! :search_paths

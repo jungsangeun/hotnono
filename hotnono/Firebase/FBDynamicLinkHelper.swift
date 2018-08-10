@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import Firebase
+
+class FBDynamicLinkHelper {
+    
+    static let sharedInstance = FBDynamicLinkHelper()
+    
+    init() {
+        print("Created FBDynamicLinkHelper");
+    }
+    
+    func createLongLink() {
+        
+    }
+}

@@ -12,6 +12,7 @@ import FirebaseFirestore
 class PlayViewController: BaseViewController {
     
     @IBOutlet weak var codeLabel: UILabel!
+    @IBOutlet weak var playgroundView: PlayGroundView!
     @IBOutlet weak var quitButton: MDCButton!
     @IBOutlet weak var leftButton: MDCButton!
     @IBOutlet weak var topButton: MDCButton!
@@ -36,19 +37,19 @@ class PlayViewController: BaseViewController {
     }
     
     @IBAction func clickLeft(_ sender: Any) {
-        
+        playgroundView.movePlayer(id: "1", dx: -10, dy: 0)
     }
     
     @IBAction func clickTop(_ sender: Any) {
-        
+        playgroundView.movePlayer(id: "1", dx: 0, dy: -10)
     }
     
     @IBAction func clickRight(_ sender: Any) {
-        
+        playgroundView.movePlayer(id: "1", dx: 10, dy: 0)
     }
     
     @IBAction func clickBottom(_ sender: Any) {
-        
+        playgroundView.movePlayer(id: "1", dx: 0, dy: 10)
     }
     
     override func viewDidLoad() {
@@ -128,13 +129,12 @@ class PlayViewController: BaseViewController {
     //방 모니터링 중단
     func stopDBMonitoring(){
         guard let roomSubscribe = roomMonitoringSubscribe else {return}
-        subscribe.remove()
+        roomSubscribe.remove()
         guard let roomMembersubscribe = roomMemberMonitoringSubscribe else {return}
         roomMembersubscribe.remove()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //Room Uid 체크
         guard let uid = roomUid else {
             print("uid is nil")
             return
@@ -142,5 +142,9 @@ class PlayViewController: BaseViewController {
         
         //라벨 설정
         codeLabel.text = String(format:"Room ID : %@",uid)
+        
+        playgroundView.joinPlayer(player: Player(id: "1", x: 0, y: 0, tagger: true, color: UIColor.red))
+        playgroundView.joinPlayer(player: Player(id: "2", x: PlayGroundView.SIZE-Player.SIZE, y: PlayGroundView.SIZE-Player.SIZE, tagger: false, color: UIColor.blue))
+        playgroundView.start()
     }
 }
