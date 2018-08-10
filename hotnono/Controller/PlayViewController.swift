@@ -18,6 +18,9 @@ class PlayViewController: BaseViewController {
     @IBOutlet weak var topButton: MDCButton!
     @IBOutlet weak var rightButton: MDCButton!
     @IBOutlet weak var bottomButton: MDCButton!
+    @IBOutlet weak var playButton: MDCButton!
+    @IBOutlet weak var finishButton: MDCButton!
+    @IBOutlet weak var resetButton: MDCButton!
     
     //현재 Room Uid
     var roomUid: String?
@@ -32,6 +35,27 @@ class PlayViewController: BaseViewController {
     
     //방 멤버 정보 모니터링 Subscribe
     var roomMemberMonitoringSubscribe : ListenerRegistration? = nil
+   
+    @IBAction func clickStart(_ sender: Any) {
+        playgroundView.start()
+        playButton.isEnabled = false
+        finishButton.isEnabled = true
+    }
+    
+    @IBAction func clickStop(_ sender: Any) {
+        playgroundView.stop()
+        finishButton.isEnabled = false
+        resetButton.isEnabled = true
+    }
+    
+    @IBAction func clickReset(_ sender: Any) {
+        playgroundView.reset()
+        
+        playButton.isEnabled = true
+        finishButton.isEnabled = false
+        resetButton.isEnabled = false
+    }
+    
     @IBAction func clickQuit(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -53,11 +77,18 @@ class PlayViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
+        MaterialDesignUtil.applyButtonTheme(playButton)
+        MaterialDesignUtil.applyButtonTheme(finishButton)
+        MaterialDesignUtil.applyButtonTheme(resetButton)
+        
         MaterialDesignUtil.applyButtonTheme(quitButton)
         MaterialDesignUtil.applyButtonTheme(leftButton)
         MaterialDesignUtil.applyButtonTheme(topButton)
         MaterialDesignUtil.applyButtonTheme(rightButton)
         MaterialDesignUtil.applyButtonTheme(bottomButton)
+        
+        finishButton.isEnabled = false
+        resetButton.isEnabled = false
         
         //현재 방 변화 모니터링
         startDBMonitoring()
@@ -144,7 +175,6 @@ class PlayViewController: BaseViewController {
         codeLabel.text = String(format:"Room ID : %@",uid)
         
         playgroundView.joinPlayer(player: Player(id: "1", x: 0, y: 0, tagger: true, color: UIColor.red))
-        playgroundView.joinPlayer(player: Player(id: "2", x: PlayGroundView.SIZE-Player.SIZE, y: PlayGroundView.SIZE-Player.SIZE, tagger: false, color: UIColor.blue))
         playgroundView.start()
     }
 }

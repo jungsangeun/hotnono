@@ -246,7 +246,7 @@ NO</string>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rve-M1-aR3" customClass="PlayGroundView" customModule="hotnono" customModuleProvider="target">
-                                <rect key="frame" x="57.5" y="139" width="260" height="260"/>
+                                <rect key="frame" x="57.5" y="177" width="260" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="ZDK-tL-nbP"/>
                                     <constraint firstAttribute="height" constant="260" id="dG9-AN-HIB"/>
@@ -302,34 +302,67 @@ NO</string>
                                     <action selector="clickTop:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="HdE-bh-96F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGB-73-0Cb" customClass="MDCButton">
+                                <rect key="frame" x="20" y="88" width="98.5" height="30"/>
+                                <state key="normal" title="시작"/>
+                                <connections>
+                                    <action selector="clickStart:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="6MI-3H-rAS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FX-yY-bxH" customClass="MDCButton">
+                                <rect key="frame" x="138.5" y="88" width="98" height="30"/>
+                                <state key="normal" title="중지"/>
+                                <connections>
+                                    <action selector="clickStop:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="Wcs-ov-L6i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-mR-zqf" customClass="MDCButton">
+                                <rect key="frame" x="256.5" y="88" width="98.5" height="30"/>
+                                <state key="normal" title="리셋"/>
+                                <connections>
+                                    <action selector="clickReset:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="8UP-wP-QmA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="1FX-yY-bxH" firstAttribute="width" secondItem="kvN-mR-zqf" secondAttribute="width" id="0Pe-SZ-Ftz"/>
                             <constraint firstItem="g9a-9c-PVM" firstAttribute="top" secondItem="zJN-HY-Mry" secondAttribute="bottom" constant="8" id="49L-qi-B0d"/>
                             <constraint firstItem="QrY-u8-N6B" firstAttribute="top" secondItem="qk0-dh-2Qc" secondAttribute="bottom" id="9A2-cb-ILk"/>
-                            <constraint firstItem="qk0-dh-2Qc" firstAttribute="top" secondItem="Rve-M1-aR3" secondAttribute="bottom" constant="68" id="B2K-z4-2fx"/>
+                            <constraint firstItem="qk0-dh-2Qc" firstAttribute="top" secondItem="Rve-M1-aR3" secondAttribute="bottom" constant="30" id="B2K-z4-2fx"/>
                             <constraint firstItem="0GI-gm-8nR" firstAttribute="leading" secondItem="QrY-u8-N6B" secondAttribute="trailing" constant="30" id="BH3-XF-Zlx"/>
+                            <constraint firstItem="OGB-73-0Cb" firstAttribute="leading" secondItem="xT5-7r-7Zo" secondAttribute="leading" constant="20" id="CCK-e7-Vsr"/>
                             <constraint firstItem="zJN-HY-Mry" firstAttribute="leading" secondItem="xT5-7r-7Zo" secondAttribute="leading" constant="20" id="CNo-Hu-Ork"/>
+                            <constraint firstItem="1FX-yY-bxH" firstAttribute="leading" secondItem="OGB-73-0Cb" secondAttribute="trailing" constant="20" id="Jpb-Jr-FKB"/>
                             <constraint firstItem="0GI-gm-8nR" firstAttribute="top" secondItem="Srd-Oe-sv9" secondAttribute="bottom" id="LOI-TA-UVM"/>
                             <constraint firstItem="g9a-9c-PVM" firstAttribute="leading" secondItem="xT5-7r-7Zo" secondAttribute="leading" constant="20" id="NOn-Oc-68x"/>
+                            <constraint firstItem="kvN-mR-zqf" firstAttribute="centerY" secondItem="1FX-yY-bxH" secondAttribute="centerY" id="T1v-mu-6Zi"/>
+                            <constraint firstItem="OGB-73-0Cb" firstAttribute="width" secondItem="1FX-yY-bxH" secondAttribute="width" id="TjJ-um-TuD"/>
+                            <constraint firstItem="1FX-yY-bxH" firstAttribute="top" secondItem="g9a-9c-PVM" secondAttribute="bottom" constant="10" id="VM2-3D-WzG"/>
                             <constraint firstItem="0GI-gm-8nR" firstAttribute="top" secondItem="QrY-u8-N6B" secondAttribute="bottom" id="X6v-EI-jRe"/>
                             <constraint firstItem="Rve-M1-aR3" firstAttribute="centerX" secondItem="m6e-z1-Zwd" secondAttribute="centerX" id="XXe-vP-N4n"/>
                             <constraint firstItem="qk0-dh-2Qc" firstAttribute="centerX" secondItem="0GI-gm-8nR" secondAttribute="centerX" id="XaX-nA-uru"/>
                             <constraint firstItem="xT5-7r-7Zo" firstAttribute="bottom" secondItem="0GI-gm-8nR" secondAttribute="bottom" constant="20" id="YQK-P2-Z3L"/>
+                            <constraint firstItem="kvN-mR-zqf" firstAttribute="leading" secondItem="1FX-yY-bxH" secondAttribute="trailing" constant="20" id="dEf-11-zGF"/>
                             <constraint firstItem="Srd-Oe-sv9" firstAttribute="leading" secondItem="0GI-gm-8nR" secondAttribute="trailing" constant="30" id="dfq-6X-9Pk"/>
                             <constraint firstItem="xT5-7r-7Zo" firstAttribute="trailing" secondItem="g9a-9c-PVM" secondAttribute="trailing" constant="20" id="eGb-we-XdI"/>
+                            <constraint firstItem="xT5-7r-7Zo" firstAttribute="trailing" secondItem="kvN-mR-zqf" secondAttribute="trailing" constant="20" id="eVz-s6-AjQ"/>
                             <constraint firstItem="xT5-7r-7Zo" firstAttribute="trailing" secondItem="zJN-HY-Mry" secondAttribute="trailing" constant="20" id="gMn-cs-ebW"/>
                             <constraint firstItem="0GI-gm-8nR" firstAttribute="centerX" secondItem="m6e-z1-Zwd" secondAttribute="centerX" id="tyu-zm-ZFY"/>
                             <constraint firstItem="zJN-HY-Mry" firstAttribute="top" secondItem="xT5-7r-7Zo" secondAttribute="top" constant="20" id="wSx-Xy-WUq"/>
+                            <constraint firstItem="OGB-73-0Cb" firstAttribute="centerY" secondItem="1FX-yY-bxH" secondAttribute="centerY" id="z7N-Kl-5WC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xT5-7r-7Zo"/>
                     </view>
                     <connections>
                         <outlet property="bottomButton" destination="0GI-gm-8nR" id="wJu-ol-0JO"/>
                         <outlet property="codeLabel" destination="g9a-9c-PVM" id="XYr-xc-kHX"/>
+                        <outlet property="finishButton" destination="1FX-yY-bxH" id="MJv-V2-T1w"/>
                         <outlet property="leftButton" destination="QrY-u8-N6B" id="vfj-aP-drh"/>
+                        <outlet property="playButton" destination="OGB-73-0Cb" id="iad-dj-hse"/>
                         <outlet property="playgroundView" destination="Rve-M1-aR3" id="S0m-qL-xUX"/>
                         <outlet property="quitButton" destination="zJN-HY-Mry" id="hh6-nt-QgJ"/>
+                        <outlet property="resetButton" destination="kvN-mR-zqf" id="Y1N-bK-Nks"/>
                         <outlet property="rightButton" destination="Srd-Oe-sv9" id="pD8-Dz-H3N"/>
                         <outlet property="topButton" destination="qk0-dh-2Qc" id="mPC-sf-Pyh"/>
                     </connections>

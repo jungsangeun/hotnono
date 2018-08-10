@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				E551977D211D8D10003774ED /* Model */,
-				5C6CE108211D67F900AB03EC /* Model */,
 				5CD039F2211C92F0004C91F8 /* Util */,
 				5CD9A2DD21145D500044FA91 /* View */,
 				5CD9A2BE211455970044FA91 /* Controller */,
@@ -211,14 +210,6 @@
 				5C07591C21142DD8005F9143 /* Info.plist */,
 			);
 			path = hotnonoUITests;
-			sourceTree = "<group>";
-		};
-		5C6CE108211D67F900AB03EC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5C6CE109211D680500AB03EC /* Player.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		5CD039F2211C92F0004C91F8 /* Util */ = {
@@ -277,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				E551977B211D8AD0003774ED /* RoomMemberInfo.swift */,
+				5C6CE109211D680500AB03EC /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
