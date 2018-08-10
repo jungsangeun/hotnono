@@ -39,6 +39,7 @@
 		5CDFE1DD2119A8A2002220E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDFE1DC2119A8A1002220E3 /* GoogleService-Info.plist */; };
 		5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5589D211462D300DC196C /* BaseViewController.swift */; };
 		E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */; };
+		E551977C211D8AD0003774ED /* RoomMemberInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E551977B211D8AD0003774ED /* RoomMemberInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnonoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38817FF4B137B16222F2967 /* Pods_hotnonoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnonoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7F8FDA0E9B47E5D2A33AF7 /* Pods-hotnonoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnonoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hotnonoUITests/Pods-hotnonoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E551977B211D8AD0003774ED /* RoomMemberInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMemberInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		5C0758F921142DD7005F9143 /* hotnono */ = {
 			isa = PBXGroup;
 			children = (
+				E551977D211D8D10003774ED /* Model */,
 				5CD039F2211C92F0004C91F8 /* Util */,
 				5CD9A2DD21145D500044FA91 /* View */,
 				5CD9A2BE211455970044FA91 /* Controller */,
@@ -251,6 +254,14 @@
 				5CA15F8B211BCD2200911555 /* PopupView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E551977D211D8D10003774ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E551977B211D8AD0003774ED /* RoomMemberInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EB0B404189A42EE7E4BD4B36 /* Frameworks */ = {
@@ -529,6 +540,7 @@
 				5CD9A2C32114593F0044FA91 /* FBAnalyticsHelper.swift in Sources */,
 				5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */,
 				5CD9A2C52114595A0044FA91 /* FBAdModHelper.swift in Sources */,
+				E551977C211D8AD0003774ED /* RoomMemberInfo.swift in Sources */,
 				5C8680B3211BD104008CC1C2 /* PlayViewController.swift in Sources */,
 				5CD9A2CD2114599C0044FA91 /* FBCrashlyticsHelper.swift in Sources */,
 				5CD039F4211C9309004C91F8 /* MaterialDesignUtil.swift in Sources */,
