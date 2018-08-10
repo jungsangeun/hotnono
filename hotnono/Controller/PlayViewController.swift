@@ -39,6 +39,7 @@ class PlayViewController: BaseViewController {
     }
     
     var code: String?
+    var roomUid: String?
     
     override func viewDidLoad() {
         MaterialDesignUtil.applyButtonTheme(quitButton)
@@ -49,6 +50,6 @@ class PlayViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        codeLabel.text = code
+        codeLabel.text = String(format:"%s[%s]",code ?? "",roomUid ?? "")
     }
 }

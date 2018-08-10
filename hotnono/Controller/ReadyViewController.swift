@@ -8,7 +8,7 @@
 
 import UIKit
 import MaterialComponents.MaterialButtons
-
+import FirebaseFirestore
 class ReadyViewController: BaseViewController {
     
     @IBOutlet weak var createButton: MDCButton!
@@ -16,8 +16,32 @@ class ReadyViewController: BaseViewController {
     @IBOutlet weak var joinButton: MDCButton!
     @IBOutlet weak var backToSignInButton: MDCButton!
     
+    //Firebase Database Room 목록이 있는 경로
+    let roomRootPath = "rooms"
+    
+    //생성된 방 번호
+    var documentID : String? = nil
+    
     @IBAction func clickCreate(_ sender: Any) {
-        performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
+        createRoom()
+    }
+    
+    //방 생성 함수
+    func createRoom(){
+        if let user = FBAuthenticationHelper.sharedInstance.getCurrentUser() {
+            let db = Firestore.firestore()
+            var ref: DocumentReference? = nil
+            ref = db.collection(roomRootPath).addDocument(data: ["owner":user.uid]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    self.performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
+                    self.documentID = ref?.documentID ?? nil
+                }
+            }
+            
+        }
     }
     
     @IBAction func clickJoin(_ sender: Any) {
@@ -40,6 +64,7 @@ class ReadyViewController: BaseViewController {
         if segue.identifier == "segueReadyToPlay" {
             let vc = segue.destination as! PlayViewController
             vc.code = codeTextField.text
+            vc.roomUid = documentID
         }
     }
 }
