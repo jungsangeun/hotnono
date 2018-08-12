@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-//import RxSwift
 
 class Player {
     
@@ -10,33 +9,19 @@ class Player {
     var x: Int
     var y: Int
     var tagger: Bool = false // 술래
-    var color: UIColor = UIColor.red
+    var color: UIColor = UIColor.black
     
-//    var disposable: Disposable
+    init(_ data: RoomMemberInfo) {
+        self.id = data.uid ?? ""
+        self.x = data.positionX
+        self.y = data.positionY
+        self.tagger = false
+        self.color = UIColor.black
+    }
     
-    init(id: String, x: Int = 0, y: Int = 0, tagger: Bool = false, color: UIColor = UIColor.red) {
-        self.id = id
+    func setPosition(x: Int, y: Int) {
         self.x = x
         self.y = y
-        self.tagger = tagger
-        self.color = color
-        
-//        disposable = RxEvent.sharedInstance.getEvent(event: .MoveTagger, initValue: CGPoint(x: -1, y: -1))
-//            .subscribe { (event) in
-////                let point = event.element as! CGPoint
-////                if (self.x < point.x. && point.x < self.x+Player.SIZE) {
-////
-////                }
-//        }
-    }
-    
-    func move(dx: Int=0, dy: Int=0) {
-        x += dx
-        y += dy
-    }
-    
-    func destroy() {
-//        disposable.dispose()
     }
 }
 

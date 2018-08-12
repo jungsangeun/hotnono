@@ -16,8 +16,16 @@ class RoomMemberInfo{
     var positionY: Int = 0
     var status: Status = Status.Live
     
-    init(uid: String){
+    init(uid: String = ""){
         self.uid = uid
+    }
+    
+    init(_ data: [String:Any?]) {
+        uid = data["uid"] as! String
+        name = data["name"] as! String
+        positionX = data["position_x"] as! Int
+        positionY = data["position_y"] as! Int
+        status = Status(rawValue: data["status"] as! Int) ?? Status.Die
     }
     
     enum Status :Int{

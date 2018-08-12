@@ -68,5 +68,5 @@ class RxEvent {
 }
 
 enum EventName {
-    case MoveTagger
+    case JoinedPlayer, UpdatedPlayer
 }

@@ -8,7 +8,10 @@
 
 import UIKit
 import MaterialComponents.MaterialButtons
+import FirebaseAuth
 import FirebaseFirestore
+import RxSwift
+
 class PlayViewController: BaseViewController {
     
     @IBOutlet weak var codeLabel: UILabel!
@@ -35,7 +38,11 @@ class PlayViewController: BaseViewController {
     
     //방 멤버 정보 모니터링 Subscribe
     var roomMemberMonitoringSubscribe : ListenerRegistration? = nil
-   
+    
+    var user: User? = nil
+    var playModel: PlayModel? = nil
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    
     @IBAction func clickStart(_ sender: Any) {
         playgroundView.start()
         playButton.isEnabled = false
@@ -61,19 +68,23 @@ class PlayViewController: BaseViewController {
     }
     
     @IBAction func clickLeft(_ sender: Any) {
-        playgroundView.movePlayer(id: "1", dx: -10, dy: 0)
+        guard let (x, y, status) = playModel?.getPosition(direction: .Left) else { return }
+        self.addData(x: x, y: y, status: status)
     }
     
     @IBAction func clickTop(_ sender: Any) {
-        playgroundView.movePlayer(id: "1", dx: 0, dy: -10)
+        guard let (x, y, status) = playModel?.getPosition(direction: .Top) else { return }
+        self.addData(x: x, y: y, status: status)
     }
     
     @IBAction func clickRight(_ sender: Any) {
-        playgroundView.movePlayer(id: "1", dx: 10, dy: 0)
+        guard let (x, y, status) = playModel?.getPosition(direction: .Right) else { return }
+        self.addData(x: x, y: y, status: status)
     }
     
     @IBAction func clickBottom(_ sender: Any) {
-        playgroundView.movePlayer(id: "1", dx: 0, dy: 10)
+        guard let (x, y, status) = playModel?.getPosition(direction: .Bottom) else { return }
+        self.addData(x: x, y: y, status: status)
     }
     
     override func viewDidLoad() {
@@ -90,17 +101,27 @@ class PlayViewController: BaseViewController {
         finishButton.isEnabled = false
         resetButton.isEnabled = false
         
+        user = FBAuthenticationHelper.sharedInstance.getCurrentUser()
+        
         //현재 방 변화 모니터링
         startDBMonitoring()
         
-        //Test Code
-        if let user = FBAuthenticationHelper.sharedInstance.getCurrentUser() {
-            let memberInfo : RoomMemberInfo = RoomMemberInfo(uid: user.uid)
-            memberInfo.positionX = 1
-            memberInfo.positionY = 1
-            memberInfo.name = "Test"
-            uploadMemberInfo(memberInfo: memberInfo)
+        subscribeEvent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let uid = roomUid else {
+            print("uid is nil")
+            return
         }
+        
+        //라벨 설정
+        codeLabel.text = String(format:"Room ID : %@",uid)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        compositeDisposable.dispose()
+        RxEvent.sharedInstance.clearAll()
     }
     
     func uploadMemberInfo(memberInfo:RoomMemberInfo){
@@ -130,6 +151,7 @@ class PlayViewController: BaseViewController {
         }
         
         let db = Firestore.firestore()
+        
         //방 정보 모니터링
         roomMonitoringSubscribe = db.collection(roomRootPath).document(uid)
             .addSnapshotListener { documentSnapshot, error in
@@ -139,21 +161,49 @@ class PlayViewController: BaseViewController {
                 }
                 
                 //변경된 방 정보 출력
-                print(document.data())
-        }
-    
-        //방 멤버 정보 변경 모니터링
-        roomMemberMonitoringSubscribe = db.collection(roomRootPath).document(uid).collection(memberPath)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
+                print(String(format: "updated room: %@", document.data() ?? "nil"))
+                
+                // 처음 멤버 정보 한번 가져와서 참여 가부 결정하기
+                let ownerId = document.data()?["owner"] as! String
+                db.collection(self.roomRootPath).document(uid).collection(self.memberPath).getDocuments{ documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    
+                    if self.playModel == nil {
+                        self.playModel = PlayModel(myId: self.user?.uid ?? "", ownerId: ownerId, documents: document.documents)
+                        if ((self.playModel?.isJoinable()) != nil) {
+                            //방 멤버 정보 변경 모니터링
+                            self.roomMemberMonitoringSubscribe = db.collection(self.roomRootPath).document(uid).collection(self.memberPath)
+                                .addSnapshotListener { documentSnapshot, error in
+                                    guard let document = documentSnapshot else {
+                                        print("Error fetching document: \(error!)")
+                                        return
+                                    }
+                                    
+                                    //변경된 멤버 정보 출력
+                                    for document in document.documents{
+                                        print(String(format: "updated member: %@", document.data()))
+                                        
+                                        let member = RoomMemberInfo(document.data())
+                                        if (self.playModel?.isJoined(member: member))! {
+                                            // 사용자 업데이트
+                                            self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY)
+                                        } else {
+                                            // 사용자 참여
+                                            let player = Player(member)
+                                            self.playgroundView.joinPlayer(player: player)
+                                        }
+                                        self.playModel?.update(member: member)
+                                    }
+                            }
+                            let emptyPosition = self.playModel?.getEmptyPosition()
+                            self.addData(x: emptyPosition?.x, y: emptyPosition?.y, status: RoomMemberInfo.Status.Live)
+                        }
+                    }
                 }
                 
-                //변경된 멤버 정보 출력
-                for document in document.documents{
-                    print(document.data())
-                }
         }
     }
     
@@ -165,16 +215,37 @@ class PlayViewController: BaseViewController {
         roomMembersubscribe.remove()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        guard let uid = roomUid else {
-            print("uid is nil")
-            return
+    private func addData(x: Int?, y: Int?, status: RoomMemberInfo.Status) {
+        if let user = user {
+            let memberInfo : RoomMemberInfo = RoomMemberInfo(uid: user.uid)
+            memberInfo.positionX = x ?? 0
+            memberInfo.positionY = y ?? 0
+            memberInfo.status = status
+            memberInfo.name = user.displayName ?? "noname"
+            uploadMemberInfo(memberInfo: memberInfo)
         }
-        
-        //라벨 설정
-        codeLabel.text = String(format:"Room ID : %@",uid)
-        
-        playgroundView.joinPlayer(player: Player(id: "1", x: 0, y: 0, tagger: true, color: UIColor.red))
-        playgroundView.start()
+    }
+    
+    private func subscribeEvent() {
+//        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .JoinedPlayer, initValue: RoomMemberInfo())
+//            .subscribe{ (event) in
+//                guard let _ = event.element, event.element is RoomMemberInfo else {
+//                    return
+//                }
+//                // 사용자 참여
+//                let member = event.element as! RoomMemberInfo
+//                let player = Player(member)
+//                self.playgroundView.joinPlayer(player: player)
+//        })
+//
+//        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .UpdatedPlayer, initValue: RoomMemberInfo())
+//            .subscribe{ (event) in
+//                guard let _ = event.element, event.element is RoomMemberInfo else {
+//                    return
+//                }
+//                // 사용자 정보 변경
+//                let member = event.element as! RoomMemberInfo
+//                self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY)
+//        })
     }
 }

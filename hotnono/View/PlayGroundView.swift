@@ -15,7 +15,7 @@ class PlayGroundView: UIView {
     
     var status: PlayStatus = .Idle
     var playerCount: Int = 0
-    var players: Array<Player> = []
+    var players: [String: Player] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -36,7 +36,7 @@ class PlayGroundView: UIView {
         if status != .Idle {
             return
         }
-        players.append(player)
+        players[player.id] = player
         
         setNeedsDisplay()
     }
@@ -46,19 +46,19 @@ class PlayGroundView: UIView {
         playerCount = players.count
     }
     
-    func movePlayer(id: String, dx: Int = 0, dy: Int = 0) {
+    func movePlayer(id: String, x: Int = 0, y: Int = 0) {
         if status != .Playing {
             return
         }
         
-        for p in players {
-            if p.id == id {
-                move(player: p, dx: dx, dy: dy)
-            }
-        }
+        guard let p = players[id] else { return }
+        p.setPosition(x: x, y: y)
         
-        removePlayerIfCaught()
-        
+        setNeedsDisplay()
+    }
+    
+    func removePlayer(id: String) {
+        players.removeValue(forKey: id)
         setNeedsDisplay()
     }
     
@@ -85,41 +85,11 @@ class PlayGroundView: UIView {
     
     private func drawPlayers(_ rect: CGRect) {
         for p in players {
-            p.color.setFill()
-            let path = UIBezierPath(ovalIn: CGRect(x: p.x, y: p.y, width: Player.SIZE, height: Player.SIZE))
+            let player = p.value
+            player.color.setFill()
+            let path = UIBezierPath(ovalIn: CGRect(x: player.x, y: player.y, width: Player.SIZE, height: Player.SIZE))
             path.fill()
         }
-    }
-    
-    private func move(player: Player, dx: Int, dy: Int) {
-        var x = 0
-        var y = 0
-        
-        if dx > 0 {
-            if player.x + Player.SIZE < PlayGroundView.SIZE {
-                x = dx
-            }
-        } else {
-            if (player.x > 0) {
-                x = dx
-            }
-        }
-        
-        if dy > 0 {
-            if (player.y + Player.SIZE < PlayGroundView.SIZE) {
-                y = dy
-            }
-        } else {
-            if (player.y > 0) {
-                y = dy
-            }
-        }
-        
-        player.move(dx: x, dy: y)
-    }
-    
-    private func removePlayerIfCaught() {
-        
     }
 }
 
