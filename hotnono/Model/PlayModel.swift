@@ -11,6 +11,8 @@ import FirebaseFirestore
 
 class PlayModel {
     
+    static let BOARD_SIZE = 260
+    static let PLAYER_SIZE = 20
     static let MAX_COUNT = 4
     static let MOVE_DISTANCE = 10
     
@@ -41,9 +43,29 @@ class PlayModel {
         }
     }
     
+    func isCaught(member: RoomMemberInfo) -> Bool {
+        if let uid = member.uid, uid != ownerId {
+            let tagger = members[ownerId]
+            if (member.positionX == tagger?.positionX
+                && member.positionY == tagger?.positionY) {
+                return true
+            }
+        }
+        return false
+    }
+    
     func getEmptyPosition() -> (x: Int, y: Int) {
-        // TODO 겹치지 않게 랜덤으로 토해내기
-        return (0, 0)
+        let count = members.count
+        switch count {
+        case 1:
+            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, 0)
+        case 2:
+            return (0, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
+        case 3:
+            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
+        default:
+            return (0, 0)
+        }
     }
     
     func getPosition(direction: Direction) -> (x: Int, y: Int, status: RoomMemberInfo.Status)? {
@@ -64,11 +86,11 @@ class PlayModel {
             nX = member.positionX
             nY = member.positionY + PlayModel.MOVE_DISTANCE
         }
-        if (nX < 0 || nX > PlayGroundView.SIZE
-            || nY < 0 || nY > PlayGroundView.SIZE) {
+        print("nX: \(nX) nY: \(nY)")
+        if (nX < 0 || nX > PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE
+            || nY < 0 || nY > PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE) {
             return nil
         }
-        // TODO 밖으로 안 벗어나게 처리
         return (nX, nY, member.status)
     }
     
@@ -76,7 +98,16 @@ class PlayModel {
         guard let uid = member.uid else { return }
         members[uid] = member
         
-        // TODO 충돌 체크
+        var caughtCount = 0
+        for m in members {
+            if (m.value.status == .Die) {
+                caughtCount += 1
+            }
+        }
+        
+        if (caughtCount > members.count - 1) {
+            RxEvent.sharedInstance.sendEvent(event: .CatchAllPlayer, data: true)
+        }
     }
 }
 

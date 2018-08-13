@@ -17,7 +17,6 @@
 		5C07591021142DD8005F9143 /* hotnonoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07590F21142DD8005F9143 /* hotnonoTests.swift */; };
 		5C07591B21142DD8005F9143 /* hotnonoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07591A21142DD8005F9143 /* hotnonoUITests.swift */; };
 		5C6CE106211D673F00AB03EC /* PlayGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CE105211D673F00AB03EC /* PlayGroundView.swift */; };
-		5C6CE10A211D680500AB03EC /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CE109211D680500AB03EC /* Player.swift */; };
 		5C6CE10C211D6CFC00AB03EC /* RxEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CE10B211D6CFC00AB03EC /* RxEvent.swift */; };
 		5C8680B3211BD104008CC1C2 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8680B2211BD104008CC1C2 /* PlayViewController.swift */; };
 		5C8680B5211C321A008CC1C2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8680B4211C321A008CC1C2 /* SplashViewController.swift */; };
@@ -79,7 +78,6 @@
 		5C07591A21142DD8005F9143 /* hotnonoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hotnonoUITests.swift; sourceTree = "<group>"; };
 		5C07591C21142DD8005F9143 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C6CE105211D673F00AB03EC /* PlayGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGroundView.swift; sourceTree = "<group>"; };
-		5C6CE109211D680500AB03EC /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5C6CE10B211D6CFC00AB03EC /* RxEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxEvent.swift; sourceTree = "<group>"; };
 		5C8680B2211BD104008CC1C2 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		5C8680B4211C321A008CC1C2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				E551977B211D8AD0003774ED /* RoomMemberInfo.swift */,
-				5C6CE109211D680500AB03EC /* Player.swift */,
 				6B90B2CA2120639400FE5581 /* PlayModel.swift */,
 			);
 			path = Model;
@@ -565,7 +562,6 @@
 				5C6CE10C211D6CFC00AB03EC /* RxEvent.swift in Sources */,
 				5CA15F8E211BCD4300911555 /* PopupView.swift in Sources */,
 				5CD9A2D721145A0C0044FA91 /* FBFirestoreHelper.swift in Sources */,
-				5C6CE10A211D680500AB03EC /* Player.swift in Sources */,
 				5CD9A2C9211459850044FA91 /* FBDatabaseHelper.swift in Sources */,
 				5CD9A2C7211459790044FA91 /* FBMessagingHelper.swift in Sources */,
 				5CA15F8A211B1B8E00911555 /* ReadyViewController.swift in Sources */,

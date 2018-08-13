@@ -302,21 +302,21 @@ NO</string>
                                     <action selector="clickTop:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="HdE-bh-96F"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGB-73-0Cb" customClass="MDCButton">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGB-73-0Cb" customClass="MDCButton">
                                 <rect key="frame" x="20" y="88" width="98.5" height="30"/>
                                 <state key="normal" title="시작"/>
                                 <connections>
                                     <action selector="clickStart:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="6MI-3H-rAS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FX-yY-bxH" customClass="MDCButton">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FX-yY-bxH" customClass="MDCButton">
                                 <rect key="frame" x="138.5" y="88" width="98" height="30"/>
                                 <state key="normal" title="중지"/>
                                 <connections>
                                     <action selector="clickStop:" destination="Zcc-1f-BnV" eventType="touchUpInside" id="Wcs-ov-L6i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-mR-zqf" customClass="MDCButton">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvN-mR-zqf" customClass="MDCButton">
                                 <rect key="frame" x="256.5" y="88" width="98.5" height="30"/>
                                 <state key="normal" title="리셋"/>
                                 <connections>

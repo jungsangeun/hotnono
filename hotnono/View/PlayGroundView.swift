@@ -11,11 +11,9 @@ import UIKit
 
 class PlayGroundView: UIView {
     
-    static let SIZE = 260
-    
     var status: PlayStatus = .Idle
     var playerCount: Int = 0
-    var players: [String: Player] = [:]
+    var players: [String: RoomMemberInfo] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,11 +30,11 @@ class PlayGroundView: UIView {
         drawPlayers(rect)
     }
     
-    func joinPlayer(player: Player) {
+    func joinPlayer(player: RoomMemberInfo) {
         if status != .Idle {
             return
         }
-        players[player.id] = player
+        players[player.uid ?? ""] = player
         
         setNeedsDisplay()
     }
@@ -46,13 +44,15 @@ class PlayGroundView: UIView {
         playerCount = players.count
     }
     
-    func movePlayer(id: String, x: Int = 0, y: Int = 0) {
+    func movePlayer(id: String, x: Int = 0, y: Int = 0, isCaught: Bool = false) {
         if status != .Playing {
             return
         }
         
         guard let p = players[id] else { return }
-        p.setPosition(x: x, y: y)
+        p.positionX = x
+        p.positionY = y
+        p.status = isCaught ? RoomMemberInfo.Status.Die : RoomMemberInfo.Status.Live
         
         setNeedsDisplay()
     }
@@ -86,8 +86,20 @@ class PlayGroundView: UIView {
     private func drawPlayers(_ rect: CGRect) {
         for p in players {
             let player = p.value
-            player.color.setFill()
-            let path = UIBezierPath(ovalIn: CGRect(x: player.x, y: player.y, width: Player.SIZE, height: Player.SIZE))
+            var color: UIColor = .black
+            if player.isTagger {
+                color = .red
+            } else if player.isMe {
+                color = .blue
+            } else {
+                color = .black
+            }
+            if player.status == .Die {
+                color.withAlphaComponent(0.3).setFill()
+            } else {
+                color.setFill()
+            }
+            let path = UIBezierPath(ovalIn: CGRect(x: player.positionX, y: player.positionY, width: PlayModel.PLAYER_SIZE, height: PlayModel.PLAYER_SIZE))
             path.fill()
         }
     }

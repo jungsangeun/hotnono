@@ -44,23 +44,15 @@ class PlayViewController: BaseViewController {
     var compositeDisposable: CompositeDisposable = CompositeDisposable()
     
     @IBAction func clickStart(_ sender: Any) {
-        playgroundView.start()
-        playButton.isEnabled = false
-        finishButton.isEnabled = true
+        start()
     }
     
     @IBAction func clickStop(_ sender: Any) {
-        playgroundView.stop()
-        finishButton.isEnabled = false
-        resetButton.isEnabled = true
+        stop()
     }
     
     @IBAction func clickReset(_ sender: Any) {
-        playgroundView.reset()
-        
-        playButton.isEnabled = true
-        finishButton.isEnabled = false
-        resetButton.isEnabled = false
+        reset()
     }
     
     @IBAction func clickQuit(_ sender: Any) {
@@ -98,8 +90,7 @@ class PlayViewController: BaseViewController {
         MaterialDesignUtil.applyButtonTheme(rightButton)
         MaterialDesignUtil.applyButtonTheme(bottomButton)
         
-        finishButton.isEnabled = false
-        resetButton.isEnabled = false
+        reset()
         
         user = FBAuthenticationHelper.sharedInstance.getCurrentUser()
         
@@ -173,6 +164,9 @@ class PlayViewController: BaseViewController {
                     
                     if self.playModel == nil {
                         self.playModel = PlayModel(myId: self.user?.uid ?? "", ownerId: ownerId, documents: document.documents)
+                        
+                        self.reset()
+                        
                         if ((self.playModel?.isJoinable()) != nil) {
                             //방 멤버 정보 변경 모니터링
                             self.roomMemberMonitoringSubscribe = db.collection(self.roomRootPath).document(uid).collection(self.memberPath)
@@ -189,17 +183,26 @@ class PlayViewController: BaseViewController {
                                         let member = RoomMemberInfo(document.data())
                                         if (self.playModel?.isJoined(member: member))! {
                                             // 사용자 업데이트
-                                            self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY)
+                                            let isCaught = self.playModel?.isCaught(member: member) ?? false
+                                            self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY, isCaught: isCaught)
+                                            if isCaught {
+                                                member.status = .Die
+                                            }
                                         } else {
                                             // 사용자 참여
-                                            let player = Player(member)
-                                            self.playgroundView.joinPlayer(player: player)
+                                            member.isTagger = ownerId == self.user?.uid
+                                            member.isMe = self.user?.uid == member.uid
+                                            self.playgroundView.joinPlayer(player: member)
                                         }
                                         self.playModel?.update(member: member)
                                     }
                             }
                             let emptyPosition = self.playModel?.getEmptyPosition()
                             self.addData(x: emptyPosition?.x, y: emptyPosition?.y, status: RoomMemberInfo.Status.Live)
+                        } else {
+                            self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(") {
+                                self.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
                 }
@@ -226,6 +229,31 @@ class PlayViewController: BaseViewController {
         }
     }
     
+    private func start() {
+        playgroundView.start()
+        playButton.isEnabled = false
+        finishButton.isEnabled = true
+    }
+    
+    private func stop() {
+        playgroundView.stop()
+        finishButton.isEnabled = false
+        resetButton.isEnabled = true
+    }
+    
+    private func reset() {
+        playgroundView.reset()
+        
+        if (user?.uid == playModel?.ownerId) {
+            playButton.isEnabled = true
+        } else {
+            playButton.isEnabled = false
+        }
+        
+        finishButton.isEnabled = false
+        resetButton.isEnabled = false
+    }
+    
     private func subscribeEvent() {
 //        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .JoinedPlayer, initValue: RoomMemberInfo())
 //            .subscribe{ (event) in
@@ -247,5 +275,17 @@ class PlayViewController: BaseViewController {
 //                let member = event.element as! RoomMemberInfo
 //                self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY)
 //        })
+        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .CatchAllPlayer, initValue: false)
+            .subscribe{ (event) in
+                guard let catchAll = event.element, event.element is Bool else {
+                    return
+                }
+                
+                if catchAll as! Bool {
+                    self.showAlertPopup(message: "다 잡았다!! :)") {
+                        self.reset()
+                    }
+                }
+        })
     }
 }
