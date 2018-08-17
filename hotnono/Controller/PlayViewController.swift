@@ -14,9 +14,9 @@ import RxSwift
 
 class PlayViewController: BaseViewController {
     
-    @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var playgroundView: PlayGroundView!
     @IBOutlet weak var quitButton: MDCButton!
+    @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var leftButton: MDCButton!
     @IBOutlet weak var topButton: MDCButton!
     @IBOutlet weak var rightButton: MDCButton!
@@ -80,11 +80,12 @@ class PlayViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
+        MaterialDesignUtil.applyButtonTheme(quitButton)
+        
         MaterialDesignUtil.applyButtonTheme(playButton)
         MaterialDesignUtil.applyButtonTheme(finishButton)
         MaterialDesignUtil.applyButtonTheme(resetButton)
         
-        MaterialDesignUtil.applyButtonTheme(quitButton)
         MaterialDesignUtil.applyButtonTheme(leftButton)
         MaterialDesignUtil.applyButtonTheme(topButton)
         MaterialDesignUtil.applyButtonTheme(rightButton)
@@ -101,13 +102,16 @@ class PlayViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let uid = roomUid else {
+        guard let roomId = roomUid else {
             print("uid is nil")
+            showAlertPopup(message: "방 번호가 잘못 되었습니다 :(") {
+                self.dismiss(animated: true, completion: nil)
+            }
             return
         }
         
         //라벨 설정
-        codeLabel.text = String(format:"Room ID : %@",uid)
+        codeLabel.text = String(format:"방번호 %@", roomId)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -135,17 +139,19 @@ class PlayViewController: BaseViewController {
     
     //방 모니터링 시작
     func startDBMonitoring(){
+        
         //Room Uid 체크
-        guard let uid = roomUid else {
+        guard let roomId = roomUid else {
             print("Uid is nil")
             return
         }
         
         let db = Firestore.firestore()
+        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomId)
+        
         
         //방 정보 모니터링
-        roomMonitoringSubscribe = db.collection(roomRootPath).document(uid)
-            .addSnapshotListener { documentSnapshot, error in
+        roomMonitoringSubscribe = roomRef.addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")
                     return
@@ -156,7 +162,7 @@ class PlayViewController: BaseViewController {
                 
                 // 처음 멤버 정보 한번 가져와서 참여 가부 결정하기
                 let ownerId = document.data()?["owner"] as! String
-                db.collection(self.roomRootPath).document(uid).collection(self.memberPath).getDocuments{ documentSnapshot, error in
+                db.collection(FBFirestoreHelper.ROOM_PATH).document(roomId).collection(self.memberPath).getDocuments{ documentSnapshot, error in
                     guard let document = documentSnapshot else {
                         print("Error fetching document: \(error!)")
                         return

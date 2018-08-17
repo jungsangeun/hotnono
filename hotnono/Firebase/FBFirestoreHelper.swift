@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+class FBFirestoreHelper {
+    
+    static let ROOM_PATH = "rooms"
+    static let MEMBER_PATH = "members"
+}
