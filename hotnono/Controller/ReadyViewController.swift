@@ -16,20 +16,28 @@ class ReadyViewController: BaseViewController {
     @IBOutlet weak var backToSignInButton: MDCButton!
     
     //생성된 방 번호
-    var documentID : String? = nil
+    var documentID: String? = nil
     
     /**
      방 생성 함수
      방 생성에 성공하면 게임 플레이 창으로 이동한다
      **/
     func tryCreateRoomAndPlay(_ roomId: String){
-        guard let uid = FBAuthenticationHelper.sharedInstance.getCurrentUser()?.uid else {
+        guard let user = FBAuthenticationHelper.sharedInstance.getCurrentUser() else {
             showAlertPopup(message: "로그인 정보를 다시 확인해주세요")
             return
         }
         let db = Firestore.firestore()
         let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomId)
-        roomRef.setData(["owner" : uid])
+        roomRef.setData(["owner" : user.uid])
+        
+        let memberInfo : RoomMemberInfo = RoomMemberInfo(uid: user.uid)
+        memberInfo.positionX = 0
+        memberInfo.positionY = 0
+        memberInfo.status = RoomMemberInfo.Status.Die
+        memberInfo.name = user.displayName ?? "noname"
+        roomRef.collection(FBFirestoreHelper.MEMBER_PATH).document(user.uid).setData(memberInfo.toData())
+        
         self.documentID = roomId
         // 생성된 방으로 이동
         self.performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
@@ -46,7 +54,9 @@ class ReadyViewController: BaseViewController {
         roomRef.getDocument {
             document, error in
             if let document = document, document.exists {
-                print(document)
+                self.documentID = roomId
+                // 생성된 방으로 이동
+                self.performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
             } else {
                 self.tryCreateRoomAndPlay(roomId)
             }
