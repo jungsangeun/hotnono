@@ -14,6 +14,13 @@ import RxSwift
 
 class PlayViewController: BaseViewController {
     
+    var roomsDocId: String? //현재 Room Uid
+    var ownerId: String?
+    var roomMemberMonitoringSubscribe : ListenerRegistration? = nil //방 멤버 정보 모니터링 Subscribe
+    var user: User? = FBAuthenticationHelper.sharedInstance.getCurrentUser()
+    var playModel: PlayModel?
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    
     @IBOutlet weak var playgroundView: PlayGroundView!
     @IBOutlet weak var quitButton: MDCButton!
     @IBOutlet weak var codeLabel: UILabel!
@@ -24,24 +31,6 @@ class PlayViewController: BaseViewController {
     @IBOutlet weak var playButton: MDCButton!
     @IBOutlet weak var finishButton: MDCButton!
     @IBOutlet weak var resetButton: MDCButton!
-    
-    //현재 Room Uid
-    var roomUid: String?
-    
-    //Firebase Database Room 목록이 있는 경로
-    //TODO : 상수 관리 방식 적용
-    let roomRootPath = "rooms"
-    let memberPath = "members"
-    
-    //방 정보 모니터링 Subscribe
-    var roomMonitoringSubscribe : ListenerRegistration? = nil
-    
-    //방 멤버 정보 모니터링 Subscribe
-    var roomMemberMonitoringSubscribe : ListenerRegistration? = nil
-    
-    var user: User? = nil
-    var playModel: PlayModel? = nil
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
     
     @IBAction func clickStart(_ sender: Any) {
         start()
@@ -80,6 +69,32 @@ class PlayViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
+        guard let roomsDocId = roomsDocId else {
+            print("roomsDocId is nil")
+            showAlertPopup(message: "방 번호가 잘못 되었습니다 :(") {
+                self.dismiss(animated: true, completion: nil)
+            }
+            return
+        }
+        
+        //라벨 설정
+        codeLabel.text = String(format:"방번호 %@", roomsDocId)
+        
+        applyMaterialTheme() // 매터리얼 테마 적용
+        subscribeEvent() // 게임 관련 이벤트 구독
+        startDBMonitoring(roomsDocId) //현재 방 변화 모니터링
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        compositeDisposable.dispose()
+        RxEvent.sharedInstance.clearAll()
+    }
+    
+    private func applyMaterialTheme() {
         MaterialDesignUtil.applyButtonTheme(quitButton)
         
         MaterialDesignUtil.applyButtonTheme(playButton)
@@ -90,205 +105,97 @@ class PlayViewController: BaseViewController {
         MaterialDesignUtil.applyButtonTheme(topButton)
         MaterialDesignUtil.applyButtonTheme(rightButton)
         MaterialDesignUtil.applyButtonTheme(bottomButton)
-        
-        reset()
-        
-        user = FBAuthenticationHelper.sharedInstance.getCurrentUser()
-        
-        //현재 방 변화 모니터링
-        startDBMonitoring()
-        
-        subscribeEvent()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        guard let roomId = roomUid else {
-            print("uid is nil")
-            showAlertPopup(message: "방 번호가 잘못 되었습니다 :(") {
-                self.dismiss(animated: true, completion: nil)
-            }
-            return
-        }
-        
-        //라벨 설정
-        codeLabel.text = String(format:"방번호 %@", roomId)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        compositeDisposable.dispose()
-        RxEvent.sharedInstance.clearAll()
-    }
-    
-    func uploadMemberInfo(memberInfo:RoomMemberInfo){
-        
-        //Room Uid 체크
-        guard let roomUid = roomUid else {
-            print("Room Uid is nil")
-            return
-        }
-        
-        //Memeber Uid 체크
-        guard let memberUid = memberInfo.uid else {
-            print("Memeber Uid is nil")
-            return
-        }
-        
-        let db = Firestore.firestore()
-        db.collection(roomRootPath).document(roomUid).collection(memberPath).document(memberUid).setData(memberInfo.toData())
-    }
-    
-    //방 모니터링 시작
-    func startDBMonitoring(){
-        
-        //Room Uid 체크
-        guard let roomId = roomUid else {
-            print("Uid is nil")
-            return
-        }
-        
-        let db = Firestore.firestore()
-        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomId)
-        
-         // 처음 멤버 정보 한번 가져와서 참여 가부 결정하기
-        roomRef.getDocument {
-            document, error in
-            if let document = document, document.exists {
-                let ownerId = document.get("owner") as! String
-                
-            } else {
-                self.showAlertPopup(message: "방 정보를 못 가져왔어요 :(")
-            }
-        }
-        
-        // 처음 멤버 정보 한번 가져와서 참여 가부 결정하기
-        roomRef.collection(FBFirestoreHelper.MEMBER_PATH).getDocuments {
-            documentSnapshot, error in
-            guard let document = documentSnapshot else {
-                self.showAlertPopup(message: "Error fetching document: \(error!)")
-                return
-            }
-            
-            
-            if self.playModel == nil {
-                self.playModel = PlayModel(myId: self.user?.uid ?? "", ownerId: ownerId, documents: document.documents)
-                
-                self.reset()
-                
-                if ((self.playModel?.isJoinable()) != nil) {
-                    //방 멤버 정보 변경 모니터링
-                    self.roomMemberMonitoringSubscribe = db.collection(self.roomRootPath).document(uid).collection(self.memberPath)
-                        .addSnapshotListener { documentSnapshot, error in
-                            guard let document = documentSnapshot else {
-                                print("Error fetching document: \(error!)")
-                                return
-                            }
-                            
-                            //변경된 멤버 정보 출력
-                            for document in document.documents{
-                                print(String(format: "updated member: %@", document.data()))
-                                
-                                let member = RoomMemberInfo(document.data())
-                                if (self.playModel?.isJoined(member: member))! {
-                                    // 사용자 업데이트
-                                    let isCaught = self.playModel?.isCaught(member: member) ?? false
-                                    self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY, isCaught: isCaught)
-                                    if isCaught {
-                                        member.status = .Die
-                                    }
-                                } else {
-                                    // 사용자 참여
-                                    member.isTagger = ownerId == self.user?.uid
-                                    member.isMe = self.user?.uid == member.uid
-                                    self.playgroundView.joinPlayer(player: member)
-                                }
-                                self.playModel?.update(member: member)
-                            }
-                    }
-                    let emptyPosition = self.playModel?.getEmptyPosition()
-                    self.addData(x: emptyPosition?.x, y: emptyPosition?.y, status: RoomMemberInfo.Status.Live)
-                } else {
-                    self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(") {
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }
-            
-        }
-        
-        
-        
-        
-        
-        //방 정보 모니터링
-        roomMonitoringSubscribe = roomRef.addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
+    private func subscribeEvent() {
+        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .CatchAllPlayer, initValue: false)
+            .subscribe{ (event) in
+                guard let catchAll = event.element, event.element is Bool else {
                     return
                 }
                 
-                //변경된 방 정보 출력
-                print(String(format: "updated room: %@", document.data() ?? "nil"))
+                if catchAll as! Bool {
+                    self.showAlertPopup(message: "다 잡았다!! :)") {
+                        self.reset()
+                    }
+                }
+        })
+    }
+
+    //방 모니터링 시작
+    func startDBMonitoring(_ roomsDocId: String){
+        
+        let db = Firestore.firestore()
+        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
+        
+        roomRef.getDocument {
+            documentRoomSnapshot, error in
+            if let document = documentRoomSnapshot, document.exists {
+                self.ownerId = document.data()?["ownerId"] as? String
                 
                 // 처음 멤버 정보 한번 가져와서 참여 가부 결정하기
-                let ownerId = document.data()?["owner"] as! String
-                db.collection(FBFirestoreHelper.ROOM_PATH).document(roomId).collection(self.memberPath).getDocuments{ documentSnapshot, error in
-                    guard let document = documentSnapshot else {
-                        print("Error fetching document: \(error!)")
+                let memberCollectionRef = roomRef.collection(FBFirestoreHelper.MEMBER_PATH)
+                memberCollectionRef.getDocuments {
+                    documentMemberSnapshot, error in
+                    
+                    guard let document = documentMemberSnapshot else {
+                        self.showAlertPopup(message: "Error fetching document: \(error!)")
                         return
                     }
                     
-                    if self.playModel == nil {
-                        self.playModel = PlayModel(myId: self.user?.uid ?? "", ownerId: ownerId, documents: document.documents)
+                    guard let userUid = self.user?.uid else {
+                        self.showAlertPopup(message: "Empty userUid")
+                        return
+                    }
+                    
+                    self.playModel = PlayModel(myId: userUid, ownerId: self.ownerId ?? "", documents: document.documents)
+                    self.reset()
+                    
+                    if ((self.playModel?.isJoinable()) != nil) {
+                        let emptyPosition = self.playModel?.getEmptyPosition()
+                        self.addData(x: emptyPosition?.x, y: emptyPosition?.y, status: RoomMemberInfo.Status.Live)
                         
-                        self.reset()
-                        
-                        if ((self.playModel?.isJoinable()) != nil) {
-                            //방 멤버 정보 변경 모니터링
-                            self.roomMemberMonitoringSubscribe = db.collection(self.roomRootPath).document(uid).collection(self.memberPath)
-                                .addSnapshotListener { documentSnapshot, error in
-                                    guard let document = documentSnapshot else {
-                                        print("Error fetching document: \(error!)")
-                                        return
-                                    }
+                        //방 멤버 정보 변경 모니터링
+                        self.roomMemberMonitoringSubscribe = memberCollectionRef
+                            .addSnapshotListener { documentSnapshot, error in
+                                guard let document = documentSnapshot else {
+                                    print("Error fetching document: \(error!)")
+                                    return
+                                }
+                                
+                                //변경된 멤버 정보 출력
+                                for document in document.documents {
+                                    print(String(format: "updated member: %@", document.data()))
                                     
-                                    //변경된 멤버 정보 출력
-                                    for document in document.documents{
-                                        print(String(format: "updated member: %@", document.data()))
-                                        
-                                        let member = RoomMemberInfo(document.data())
-                                        if (self.playModel?.isJoined(member: member))! {
-                                            // 사용자 업데이트
-                                            let isCaught = self.playModel?.isCaught(member: member) ?? false
-                                            self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY, isCaught: isCaught)
-                                            if isCaught {
-                                                member.status = .Die
-                                            }
-                                        } else {
-                                            // 사용자 참여
-                                            member.isTagger = ownerId == self.user?.uid
-                                            member.isMe = self.user?.uid == member.uid
-                                            self.playgroundView.joinPlayer(player: member)
+                                    let member = RoomMemberInfo(document.data())
+                                    if (self.playModel?.isJoined(member: member))! {
+                                        // 사용자 업데이트
+                                        let isCaught = self.playModel?.isCaught(member: member) ?? false
+                                        self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY, isCaught: isCaught)
+                                        if isCaught {
+                                            member.status = .Die
                                         }
-                                        self.playModel?.update(member: member)
+                                    } else {
+                                        // 사용자 참여
+                                        member.isTagger = self.ownerId == self.user?.uid
+                                        member.isMe = self.user?.uid == member.uid
+                                        self.playgroundView.joinPlayer(player: member)
                                     }
-                            }
-                            let emptyPosition = self.playModel?.getEmptyPosition()
-                            self.addData(x: emptyPosition?.x, y: emptyPosition?.y, status: RoomMemberInfo.Status.Live)
-                        } else {
-                            self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(") {
-                                self.dismiss(animated: true, completion: nil)
-                            }
+                                    self.playModel?.update(member: member)
+                                }
+                        }
+                    } else {
+                        self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(") {
+                            self.dismiss(animated: true, completion: nil)
                         }
                     }
                 }
-                
+            }
         }
     }
     
     //방 모니터링 중단
     func stopDBMonitoring(){
-        guard let roomSubscribe = roomMonitoringSubscribe else {return}
-        roomSubscribe.remove()
         guard let roomMembersubscribe = roomMemberMonitoringSubscribe else {return}
         roomMembersubscribe.remove()
     }
@@ -302,6 +209,25 @@ class PlayViewController: BaseViewController {
             memberInfo.name = user.displayName ?? "noname"
             uploadMemberInfo(memberInfo: memberInfo)
         }
+    }
+    
+    func uploadMemberInfo(memberInfo: RoomMemberInfo) {
+        
+        //Room Uid 체크
+        guard let roomsDocId = roomsDocId else {
+            print("roomsDocId is nil")
+            return
+        }
+        
+        //Memeber Uid 체크
+        guard let memberUid = memberInfo.uid else {
+            print("Memeber Uid is nil")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId).collection(FBFirestoreHelper.MEMBER_PATH)
+            .document(memberUid).setData(memberInfo.toData())
     }
     
     private func start() {
@@ -329,38 +255,5 @@ class PlayViewController: BaseViewController {
         resetButton.isEnabled = false
     }
     
-    private func subscribeEvent() {
-//        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .JoinedPlayer, initValue: RoomMemberInfo())
-//            .subscribe{ (event) in
-//                guard let _ = event.element, event.element is RoomMemberInfo else {
-//                    return
-//                }
-//                // 사용자 참여
-//                let member = event.element as! RoomMemberInfo
-//                let player = Player(member)
-//                self.playgroundView.joinPlayer(player: player)
-//        })
-//
-//        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .UpdatedPlayer, initValue: RoomMemberInfo())
-//            .subscribe{ (event) in
-//                guard let _ = event.element, event.element is RoomMemberInfo else {
-//                    return
-//                }
-//                // 사용자 정보 변경
-//                let member = event.element as! RoomMemberInfo
-//                self.playgroundView.movePlayer(id: member.uid ?? "", x: member.positionX, y: member.positionY)
-//        })
-        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .CatchAllPlayer, initValue: false)
-            .subscribe{ (event) in
-                guard let catchAll = event.element, event.element is Bool else {
-                    return
-                }
-                
-                if catchAll as! Bool {
-                    self.showAlertPopup(message: "다 잡았다!! :)") {
-                        self.reset()
-                    }
-                }
-        })
-    }
+    
 }
