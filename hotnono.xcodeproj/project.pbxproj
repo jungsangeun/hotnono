@@ -40,6 +40,7 @@
 		5CD9A2E121145D7D0044FA91 /* CommonActionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */; };
 		5CDFE1DD2119A8A2002220E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDFE1DC2119A8A1002220E3 /* GoogleService-Info.plist */; };
 		5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5589D211462D300DC196C /* BaseViewController.swift */; };
+		5CFF74012129A32300536C67 /* RoomDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF74002129A32300536C67 /* RoomDocument.swift */; };
 		6B90B2CB2120639400FE5581 /* PlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B90B2CA2120639400FE5581 /* PlayModel.swift */; };
 		E4C7745ACFEF5D79139AFE7D /* Pods_hotnonoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79921428874AF8839C5B4E4 /* Pods_hotnonoUITests.framework */; };
 		E551977C211D8AD0003774ED /* RoomMemberInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E551977B211D8AD0003774ED /* RoomMemberInfo.swift */; };
@@ -101,6 +102,7 @@
 		5CD9A2E021145D7D0044FA91 /* CommonActionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonActionBar.xib; sourceTree = "<group>"; };
 		5CDFE1DC2119A8A1002220E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CF5589D211462D300DC196C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5CFF74002129A32300536C67 /* RoomDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDocument.swift; sourceTree = "<group>"; };
 		6B90B2CA2120639400FE5581 /* PlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModel.swift; sourceTree = "<group>"; };
 		88AD7CBFD14337CB6BCC940C /* Pods-hotnono.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hotnono.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hotnono/Pods-hotnono.debug.xcconfig"; sourceTree = "<group>"; };
 		945FA798FF0D2E22F8413186 /* Pods_hotnono.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hotnono.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,7 @@
 			children = (
 				E551977B211D8AD0003774ED /* RoomMemberInfo.swift */,
 				6B90B2CA2120639400FE5581 /* PlayModel.swift */,
+				5CFF74002129A32300536C67 /* RoomDocument.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				5CF5589E211462D300DC196C /* BaseViewController.swift in Sources */,
 				6B90B2CB2120639400FE5581 /* PlayModel.swift in Sources */,
 				5C6CE106211D673F00AB03EC /* PlayGroundView.swift in Sources */,
+				5CFF74012129A32300536C67 /* RoomDocument.swift in Sources */,
 				5CD9A2C52114595A0044FA91 /* FBAdModHelper.swift in Sources */,
 				E551977C211D8AD0003774ED /* RoomMemberInfo.swift in Sources */,
 				5C8680B3211BD104008CC1C2 /* PlayViewController.swift in Sources */,

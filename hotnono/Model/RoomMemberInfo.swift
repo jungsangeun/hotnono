@@ -22,7 +22,7 @@ class RoomMemberInfo {
     var isTagger = false
     var isMe = false
     
-    init(uid: String = ""){
+    init(uid: String = "") {
         self.uid = uid
     }
     

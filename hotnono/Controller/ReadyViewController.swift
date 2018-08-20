@@ -14,7 +14,7 @@ import FirebaseFirestore
 class ReadyViewController: BaseViewController {
     
     //생성된 방 번호
-    var roomsDocId: String? = nil
+    var roomDocument: RoomDocument?
     
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var joinButton: MDCButton!
@@ -36,9 +36,11 @@ class ReadyViewController: BaseViewController {
         roomRef.getDocument {
             document, error in
             if let document = document, document.exists {
-                self.joinRoom(roomsDocId, user: user)
+                self.roomDocument = RoomDocument(id: roomsDocId, data: document.data())
+                self.joinRoom(user: user)
             } else {
-                self.tryCreateRoomAndPlay(roomsDocId, user: user)
+                self.roomDocument = RoomDocument(id: roomsDocId, owner: user.uid)
+                self.tryCreateRoomAndPlay(user: user)
             }
         }
     }
@@ -58,7 +60,7 @@ class ReadyViewController: BaseViewController {
             let vc = segue.destination as! PlayViewController
             
             //TODO : sender 이외에 다른 방식으로 체크할 플래그를 전달할수 있는지 확인
-            vc.roomsDocId = roomsDocId
+            vc.roomsDocId = roomDocument?.id ?? ""
         }
     }
     
@@ -66,16 +68,31 @@ class ReadyViewController: BaseViewController {
      방 생성 함수
      방 생성에 성공하면 게임 플레이 창으로 이동한다
      **/
-    func tryCreateRoomAndPlay(_ roomsDocId: String, user: User) {
+    func tryCreateRoomAndPlay(user: User) {
+        guard let roomsDocId = roomDocument?.id else {
+            print("Empty roomDocId")
+            return
+        }
+        
         // Owner ID 추가
-        let roomRef = Firestore.firestore().collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
-        roomRef.setData(["owner" : user.uid])
+        let db = Firestore.firestore()
+        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
+        roomRef.setData(roomDocument?.toData() ?? [:])
         
         addMemberData(roomRef, user: user)
-        moveToRoom(roomsDocId)
+        moveToRoom()
     }
     
-    func joinRoom(_ roomsDocId: String, user: User) {
+    func joinRoom(user: User) {
+        guard let status = roomDocument?.status, status == .Idle else {
+            showAlertPopup(message: "이미 게임이 진행 중입니다 :(")
+            return
+        }
+        
+        guard let roomsDocId = roomDocument?.id else {
+            print("Empty roomDocId")
+            return
+        }
         
         let db = Firestore.firestore()
         let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
@@ -98,12 +115,12 @@ class ReadyViewController: BaseViewController {
             }
             
             if (isJoined) {
-                self.moveToRoom(roomsDocId)
+                self.moveToRoom()
             } else if document.documents.count >= PlayModel.MAX_COUNT {
                 self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(")
             } else {
                 self.addMemberData(roomRef, user: user)
-                self.moveToRoom(roomsDocId)
+                self.moveToRoom()
             }
         }
     }
@@ -120,8 +137,7 @@ class ReadyViewController: BaseViewController {
         roomRef.collection(FBFirestoreHelper.MEMBER_PATH).document(user.uid).setData(memberInfo.toData())
     }
     
-    func moveToRoom(_ roomsDocId: String) {
-        self.roomsDocId = roomsDocId
+    func moveToRoom() {
         // 생성된 방으로 이동
         self.performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
     }
