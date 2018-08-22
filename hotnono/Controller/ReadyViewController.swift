@@ -79,7 +79,7 @@ class ReadyViewController: BaseViewController {
         let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
         roomRef.setData(roomDocument?.toData() ?? [:])
         
-        addMemberData(roomRef, user: user)
+        addMemberData(roomRef, user: user, memberCount: 0)
         moveToRoom()
     }
     
@@ -119,22 +119,36 @@ class ReadyViewController: BaseViewController {
             } else if document.documents.count >= PlayModel.MAX_COUNT {
                 self.showAlertPopup(message: "최대 인원을 초과했어요.\n잠시 후 다시 이용해주세요 :(")
             } else {
-                self.addMemberData(roomRef, user: user)
+                self.addMemberData(roomRef, user: user, memberCount: document.documents.count)
                 self.moveToRoom()
             }
         }
     }
     
-    func addMemberData(_ roomRef: DocumentReference, user: User) {
+    func addMemberData(_ roomRef: DocumentReference, user: User, memberCount: Int) {
         // Member 정보 추가
         let memberInfo : RoomMemberInfo = RoomMemberInfo(uid: user.uid)
-        memberInfo.initX = 0
-        memberInfo.initY = 0
-        memberInfo.positionX = 0
-        memberInfo.positionY = 0
+        let (x, y) = getEmptyPosition(count: memberCount)
+        memberInfo.initX = x
+        memberInfo.initY = y
+        memberInfo.positionX = x
+        memberInfo.positionY = y
         memberInfo.status = RoomMemberInfo.Status.Idle
         memberInfo.name = user.displayName ?? "noname"
         roomRef.collection(FBFirestoreHelper.MEMBER_PATH).document(user.uid).setData(memberInfo.toData())
+    }
+    
+    func getEmptyPosition(count: Int) -> (x: Int, y: Int) {
+        switch count {
+        case 1:
+            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, 0)
+        case 2:
+            return (0, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
+        case 3:
+            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
+        default:
+            return (0, 0)
+        }
     }
     
     func moveToRoom() {

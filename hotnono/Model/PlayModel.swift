@@ -16,31 +16,17 @@ class PlayModel {
     static let MAX_COUNT = 4
     static let MOVE_DISTANCE = 10
     
-    var myId: String
-    var ownerId: String
+    var myId: String = ""
+    var ownerId: String = ""
+    var status: RoomDocument.Status = RoomDocument.Status.Idle
     var members: [String: RoomMemberInfo] = [:]
     
-    init(myId: String, ownerId: String, documents: [QueryDocumentSnapshot]) {
-        self.myId = myId
-        self.ownerId = ownerId
-        for doc in documents {
-            let member = RoomMemberInfo(doc.data())
-            if let uid = member.uid {
-                members[uid] = member
-            }
-        }
+    func isOwner() -> Bool {
+        return !myId.isEmpty && myId == ownerId
     }
     
-    func isJoinable() -> Bool {
-        return members.count < PlayModel.MAX_COUNT
-    }
-    
-    func isJoined(member: RoomMemberInfo) -> Bool {
-        if let uid = member.uid, let _ = members[uid] {
-            return true
-        } else {
-            return false
-        }
+    func isPlaying() -> Bool {
+        return status == .Playing
     }
     
     func isCaught(member: RoomMemberInfo) -> Bool {
@@ -52,20 +38,6 @@ class PlayModel {
             }
         }
         return false
-    }
-    
-    func getEmptyPosition() -> (x: Int, y: Int) {
-        let count = members.count
-        switch count {
-        case 1:
-            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, 0)
-        case 2:
-            return (0, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
-        case 3:
-            return (PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE, PlayModel.BOARD_SIZE - PlayModel.PLAYER_SIZE)
-        default:
-            return (0, 0)
-        }
     }
     
     func getPosition(direction: Direction) -> (x: Int, y: Int, status: RoomMemberInfo.Status)? {
@@ -100,7 +72,9 @@ class PlayModel {
         
         var caughtCount = 0
         for m in members {
-            if (m.value.status == .Die) {
+            let isCaught = self.isCaught(member: m.value)
+            if isCaught {
+                m.value.status = .Die
                 caughtCount += 1
             }
         }
@@ -108,6 +82,10 @@ class PlayModel {
         if (caughtCount > members.count - 1) {
             RxEvent.sharedInstance.sendEvent(event: .CatchAllPlayer, data: true)
         }
+    }
+    
+    func getMe() -> RoomMemberInfo? {
+        return members[myId]
     }
 }
 

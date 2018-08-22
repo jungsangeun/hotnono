@@ -15,7 +15,7 @@ class RoomMemberInfo {
     var name: String?
     var positionX: Int = 0
     var positionY: Int = 0
-    var status: Status = Status.Live
+    var status: Status = Status.Idle
     
     var initX: Int = 0
     var initY: Int = 0
