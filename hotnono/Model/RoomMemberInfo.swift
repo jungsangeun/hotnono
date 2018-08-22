@@ -13,12 +13,12 @@ class RoomMemberInfo {
     
     var uid: String?
     var name: String?
+    var initX: Int = 0
+    var initY: Int = 0
     var positionX: Int = 0
     var positionY: Int = 0
     var status: Status = Status.Idle
     
-    var initX: Int = 0
-    var initY: Int = 0
     var isTagger = false
     var isMe = false
     
@@ -32,6 +32,12 @@ class RoomMemberInfo {
         }
         if let name = data["name"] {
             self.name = name as? String
+        }
+        if let x = data["init_x"] {
+            self.initX = x as? Int ?? 0
+        }
+        if let y = data["init_y"] {
+            self.initY = y as? Int ?? 0
         }
         if let x = data["position_x"] {
             self.positionX = x as? Int ?? 0
@@ -55,6 +61,8 @@ class RoomMemberInfo {
         var data:[String:Any] = [:]
         data["uid"] = uid
         data["name"] = name
+        data["init_x"] = initX
+        data["init_y"] = initY
         data["position_x"] = positionX
         data["position_y"] = positionY
         data["status"] = status.rawValue
