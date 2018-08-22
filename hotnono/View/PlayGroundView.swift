@@ -11,8 +11,6 @@ import UIKit
 
 class PlayGroundView: UIView {
     
-    var status: PlayStatus = .Idle
-    var playerCount: Int = 0
     var players: [String: RoomMemberInfo] = [:]
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,46 +28,10 @@ class PlayGroundView: UIView {
         drawPlayers(rect)
     }
     
-    func joinPlayer(player: RoomMemberInfo) {
-        if status != .Idle {
-            return
-        }
-        players[player.uid ?? ""] = player
-        
+    func update(member: RoomMemberInfo) {
+        guard let uid = member.uid else { return }
+        players[uid] = member
         setNeedsDisplay()
-    }
-    
-    func start() {
-        status = .Playing
-        playerCount = players.count
-    }
-    
-    func movePlayer(id: String, x: Int = 0, y: Int = 0, isCaught: Bool = false) {
-        if status != .Playing {
-            return
-        }
-        
-        guard let p = players[id] else { return }
-        p.positionX = x
-        p.positionY = y
-        p.status = isCaught ? RoomMemberInfo.Status.Die : RoomMemberInfo.Status.Live
-        
-        setNeedsDisplay()
-    }
-    
-    func removePlayer(id: String) {
-        players.removeValue(forKey: id)
-        setNeedsDisplay()
-    }
-    
-    func stop() {
-        status = .Finish
-    }
-    
-    func reset() {
-        status = .Idle
-        players.removeAll()
-        playerCount = 0
     }
     
     private func commonInit() {
@@ -103,8 +65,4 @@ class PlayGroundView: UIView {
             path.fill()
         }
     }
-}
-
-enum PlayStatus {
-    case Idle, Playing, Finish
 }

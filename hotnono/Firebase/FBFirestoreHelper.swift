@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+class FBFirestoreHelper {
+    
+    //Firebase Database Room 목록이 있는 경로
+    static let ROOM_PATH = "rooms"
+    static let MEMBER_PATH = "members"
+}
