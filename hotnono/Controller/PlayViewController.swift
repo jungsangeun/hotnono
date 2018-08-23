@@ -52,25 +52,25 @@ class PlayViewController: BaseViewController {
     @IBAction func clickLeft(_ sender: Any) {
         guard let isPlaying = playModel?.isPlaying(), isPlaying else { return }
         guard let (x, y, status) = playModel?.getPosition(direction: .Left) else { return }
-        self.addData(x: x, y: y, status: status)
+        self.updateMe(x: x, y: y, status: status)
     }
     
     @IBAction func clickTop(_ sender: Any) {
         guard let isPlaying = playModel?.isPlaying(), isPlaying else { return }
         guard let (x, y, status) = playModel?.getPosition(direction: .Top) else { return }
-        self.addData(x: x, y: y, status: status)
+        self.updateMe(x: x, y: y, status: status)
     }
     
     @IBAction func clickRight(_ sender: Any) {
         guard let isPlaying = playModel?.isPlaying(), isPlaying else { return }
         guard let (x, y, status) = playModel?.getPosition(direction: .Right) else { return }
-        self.addData(x: x, y: y, status: status)
+        self.updateMe(x: x, y: y, status: status)
     }
     
     @IBAction func clickBottom(_ sender: Any) {
         guard let isPlaying = playModel?.isPlaying(), isPlaying else { return }
         guard let (x, y, status) = playModel?.getPosition(direction: .Bottom) else { return }
-        self.addData(x: x, y: y, status: status)
+        self.updateMe(x: x, y: y, status: status)
     }
     
     override func viewDidLoad() {
@@ -118,18 +118,7 @@ class PlayViewController: BaseViewController {
     }
     
     private func subscribeEvent() {
-        let _ = compositeDisposable.insert(RxEvent.sharedInstance.getEvent(event: .CatchAllPlayer, initValue: false)
-            .subscribe{ (event) in
-                guard let catchAll = event.element, event.element is Bool else {
-                    return
-                }
-                
-                if catchAll as! Bool {
-                    self.showAlertPopup(message: "다 잡았다!! :)") {
-                        self.reset()
-                    }
-                }
-        })
+        
     }
     
     //방 모니터링 시작
@@ -151,8 +140,10 @@ class PlayViewController: BaseViewController {
                 self.playModel?.ownerId = document["owner"] as? String ?? ""
                 self.playModel?.status = RoomDocument.Status(rawValue:
                     document["status"] as? Int ?? RoomDocument.Status.Idle.rawValue) ?? RoomDocument.Status.Idle
-                if self.playModel?.status == RoomDocument.Status.Idle {
-                    
+                
+                guard let status = self.playModel?.status else { return }
+                switch status {
+                case .Idle:
                     if (self.playModel?.isOwner() ?? false) {
                         self.playButton.isEnabled = true
                     } else {
@@ -163,7 +154,15 @@ class PlayViewController: BaseViewController {
                     self.resetButton.isEnabled = false
                     
                     if let me = self.playModel?.getMe() {
-                        self.addData(x: me.initX, y: me.initY, status: .Idle)
+                        self.updateMe(x: me.initX, y: me.initY, status: .Idle)
+                    }
+                case .Playing:
+                    print("Playing")
+                case .CatchAll:
+                    let isOwner = self.playModel?.isOwner() ?? false
+                    let message = isOwner ? "다 잡았다!! :)" : "다 잡혔다 :("
+                    self.showAlertPopup(message: message) {
+                        self.reset()
                     }
                 }
         }
@@ -185,7 +184,7 @@ class PlayViewController: BaseViewController {
                     member.isTagger = member.uid == self.playModel?.ownerId
                     member.isMe = member.uid == self.playModel?.myId
                         
-                    self.playModel?.update(member: member)
+                    self.playModel?.update(member: member, roomsDocId: self.roomsDocId ?? "")
                     self.playgroundView.update(member: member)
                 }
         }
@@ -199,14 +198,12 @@ class PlayViewController: BaseViewController {
         roomMembersubscribe.remove()
     }
     
-    private func addData(x: Int?, y: Int?, status: RoomMemberInfo.Status) {
-        if let user = user {
-            let memberInfo : RoomMemberInfo = RoomMemberInfo(uid: user.uid)
-            memberInfo.positionX = x ?? 0
-            memberInfo.positionY = y ?? 0
-            memberInfo.status = status
-            memberInfo.name = user.displayName ?? "noname"
-            uploadMemberInfo(memberInfo: memberInfo)
+    private func updateMe(x: Int?, y: Int?, status: RoomMemberInfo.Status) {
+        if let user = self.playModel?.getMe() {
+            user.positionX = x ?? 0
+            user.positionY = y ?? 0
+            user.status = status
+            uploadMemberInfo(memberInfo: user)
         }
     }
     
@@ -244,9 +241,11 @@ class PlayViewController: BaseViewController {
     }
     
     private func reset() {
-        let db = Firestore.firestore()
-        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(self.roomsDocId ?? "")
-        roomRef.updateData(["status":RoomDocument.Status.Idle.rawValue])
+        if let _ = self.playModel?.isOwner() {
+            let db = Firestore.firestore()
+            let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(self.roomsDocId ?? "")
+            roomRef.updateData(["status":RoomDocument.Status.Idle.rawValue])
+        }
     }
     
     private func leaveGame() {

@@ -40,5 +40,6 @@ class RoomDocument {
     enum Status: Int {
         case Idle = 0
         case Playing = 1
+        case CatchAll = 2
     }
 }

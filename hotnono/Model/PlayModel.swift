@@ -66,21 +66,29 @@ class PlayModel {
         return (nX, nY, member.status)
     }
     
-    func update(member: RoomMemberInfo) {
+    func update(member: RoomMemberInfo, roomsDocId: String) {
         guard let uid = member.uid else { return }
         members[uid] = member
         
-        var caughtCount = 0
-        for m in members {
-            let isCaught = self.isCaught(member: m.value)
-            if isCaught {
-                m.value.status = .Die
-                caughtCount += 1
+        let db = Firestore.firestore()
+        let roomRef = db.collection(FBFirestoreHelper.ROOM_PATH).document(roomsDocId)
+        if (isOwner()) {
+            var caughtCount = 0
+            for m in members {
+                let value = m.value
+                if value.status != .Die {
+                    let isCaught = self.isCaught(member: value)
+                    if isCaught {
+                        roomRef.collection(FBFirestoreHelper.MEMBER_PATH).document(value.uid ?? "")
+                            .updateData(["status": RoomMemberInfo.Status.Die.rawValue])
+                        caughtCount += 1
+                    }
+                }
             }
-        }
-        
-        if (caughtCount > members.count - 1) {
-            RxEvent.sharedInstance.sendEvent(event: .CatchAllPlayer, data: true)
+            
+            if (caughtCount >= 1 && caughtCount >= members.count - 1) {
+                roomRef.updateData(["status":RoomDocument.Status.CatchAll.rawValue])
+            }
         }
     }
     
