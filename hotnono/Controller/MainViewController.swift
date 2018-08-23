@@ -46,13 +46,6 @@ class MainViewController: BaseViewController {
         
         MaterialDesignUtil.applyButtonTheme(emailButton)
         MaterialDesignUtil.applyButtonTheme(googleButton)
-        
-        let tapper = UITapGestureRecognizer(target: self, action:#selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tapper)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +63,19 @@ class MainViewController: BaseViewController {
         } else {
             stateLabel.text = "시작\n하세요:)"
         }
+        
+        emailTextField.delegate = self
+        emailTextField.returnKeyType = .done
+        
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .done
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +86,26 @@ class MainViewController: BaseViewController {
         if segue.identifier == "segueMainToReady" {
             let _ = segue.destination as! ReadyViewController
         }
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -200
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0
+    }
+}
+
+extension MainViewController : UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

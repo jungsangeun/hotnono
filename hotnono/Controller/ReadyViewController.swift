@@ -53,6 +53,18 @@ class ReadyViewController: BaseViewController {
         super.viewDidLoad()
         MaterialDesignUtil.applyButtonTheme(joinButton)
         MaterialDesignUtil.applyButtonTheme(backToSignInButton)
+        
+        codeTextField.delegate = self
+        codeTextField.returnKeyType = .done
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -154,5 +166,25 @@ class ReadyViewController: BaseViewController {
     func moveToRoom() {
         // 생성된 방으로 이동
         self.performSegue(withIdentifier: "segueReadyToPlay", sender: nil)
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -220
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0
+    }
+}
+
+extension ReadyViewController : UITextFieldDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
