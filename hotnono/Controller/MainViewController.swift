@@ -21,8 +21,12 @@ class MainViewController: BaseViewController {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         
+        FBAnalyticsHelper.logEvent("btn_click_email", ["email": email])
         FBAuthenticationHelper.sharedInstance.signUpEmail(email: email,password: password,
                                                           success: { (user) in
+                                                            FBAnalyticsHelper.commInit()
+                                                            FBCrashlyticsHelper.commInit()
+                                                            
                                                             self.stateLabel.text = "반가워요\n:)"
                                                             self.showAlertPopup(message: "인증이 완료 되었습니다!") {
                                                                 self.performSegue(withIdentifier: "segueMainToReady", sender: nil)
@@ -35,6 +39,7 @@ class MainViewController: BaseViewController {
     }
     
     @IBAction func clickGoogleJoin(_ sender: Any) {
+        FBAnalyticsHelper.logEvent("btn_click_gmail")
         // TODO
         self.showAlertPopup(message: "준비중:$")
     }

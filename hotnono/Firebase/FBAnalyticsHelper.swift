@@ -11,19 +11,23 @@ import Firebase
 
 class FBAnalyticsHelper {
     
-    func setUserID(_ userID: String) {
-        Analytics.setUserID(userID)
+    static func commInit() {
+        if let uid = FBAuthenticationHelper.sharedInstance.getCurrentUser()?.uid {
+            setUserProperties(uid)
+        }
     }
     
-    func setUserProperties() {
+    static func setUserProperties(_ userID: String) {
         Analytics.setUserProperty("iOS", forName: "platform")
         
         let nsObject: AnyObject? = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as AnyObject
         let version = nsObject as! String
         Analytics.setUserProperty(version, forName: "version")
+        
+        Analytics.setUserID(userID)
     }
     
-    func logEvent(_ name: String, _ parameters: [String:Any]?) {
+    static func logEvent(_ name: String, _ parameters: [String:Any]? = nil) {
         Analytics.logEvent(name, parameters: parameters)
     }
 }
