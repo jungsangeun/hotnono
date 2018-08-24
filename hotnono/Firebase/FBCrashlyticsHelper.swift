@@ -7,3 +7,26 @@
 //
 
 import Foundation
+import Fabric
+import Crashlytics
+
+class FBCrashlyticsHelper {
+    
+    static func commInit() {
+        Fabric.with([Crashlytics.self])
+        if let uid = FBAuthenticationHelper.sharedInstance.getCurrentUser()?.uid {
+            setUserIdentifier(identifier: uid)
+        }
+        #if DEBUG
+            Fabric.sharedSDK().debug = true
+        #endif
+    }
+    
+    static func setUserIdentifier(identifier: String) {
+        Crashlytics.sharedInstance().setUserIdentifier(identifier)
+    }
+    
+    static func testing() {
+        Crashlytics.sharedInstance().crash()
+    }
+}
